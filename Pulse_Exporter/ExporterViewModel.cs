@@ -1,4 +1,43 @@
-﻿using Caliburn.Micro;
+﻿/*
+ * Copyright 2011, Rowe Technology Inc. 
+ * All rights reserved.
+ * http://www.rowetechinc.com
+ * https://github.com/rowetechinc
+ * 
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ * 
+ *  1. Redistributions of source code must retain the above copyright notice, this list of
+ *      conditions and the following disclaimer.
+ *      
+ *  2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *      of conditions and the following disclaimer in the documentation and/or other materials
+ *      provided with the distribution.
+ *      
+ *  THIS SOFTWARE IS PROVIDED BY Rowe Technology Inc. ''AS IS'' AND ANY EXPRESS OR IMPLIED 
+ *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ *  FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> OR
+ *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ *  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ *  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ *  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ *  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *  
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of Rowe Technology Inc.
+ * 
+ * HISTORY
+ * -----------------------------------------------------------------
+ * Date            Initials    Version    Comments
+ * -----------------------------------------------------------------
+ * 07/23/2017      RC          1.0.0      Initial coding
+ * 10/06/2017      RC          1.1.0      Added screening options.
+ * 
+ */
+
+using Caliburn.Micro;
 using ReactiveUI.Legacy;
 using System;
 using System.IO;
@@ -14,6 +53,9 @@ using RTI;
 
 namespace Pulse_Exporter
 {
+    /// <summary>
+    /// Export the data to selected format.
+    /// </summary>
     class ExporterViewModel : Caliburn.Micro.Screen
     {
 
@@ -38,6 +80,55 @@ namespace Pulse_Exporter
         /// Earth coordiante transform.
         /// </summary>
         private const string XFORM_EARTH = "Earth";
+
+        #region Previous Vel
+
+        /// <summary>
+        /// Previous Good Bottom Track East velocity.
+        /// </summary>
+        private float _prevBtEast = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Good Bottom Track North velocity.
+        /// </summary>
+        private float _prevBtNorth = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Good Bottom Track Vertical velocity.
+        /// </summary>
+        private float _prevBtVert = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Ship Speed X.  Used to remove ship speed from Velocity data.
+        /// </summary>
+        private float _prevShipSpeedX = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Ship Speed Y.  Used to remove ship speed from Velocity data.
+        /// </summary>
+        private float _prevShipSpeedY = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Ship Speed Z.  Used to remove ship speed from Velocity data.
+        /// </summary>
+        private float _prevShipSpeedZ = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Ship Speed Transverse.  Used to remove ship speed from Velocity data.
+        /// </summary>
+        private float _prevShipSpeedTransverse = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Ship Speed Longitundial.  Used to remove ship speed from Velocity data.
+        /// </summary>
+        private float _prevShipSpeedLongitudinal = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        /// <summary>
+        /// Previous Ship Speed Normal.  Used to remove ship speed from Velocity data.
+        /// </summary>
+        private float _prevShipSpeedNormal = RTI.DataSet.Ensemble.BAD_VELOCITY;
+
+        #endregion
 
         #endregion
 
@@ -181,8 +272,24 @@ namespace Pulse_Exporter
             }
         }
 
-        #endregion
+        /// <summary>
+        /// Flag to if ENS export is selected.
+        /// </summary>
+        private bool _IsEnsSelected;
+        /// <summary>
+        /// Flag to if ENS export is selected.
+        /// </summary>
+        public bool IsEnsSelected
+        {
+            get { return _IsEnsSelected; }
+            set
+            {
+                _IsEnsSelected = value;
+                this.NotifyOfPropertyChange(() => this.IsEnsSelected);
+            }
+        }
 
+        #endregion
 
         #region Bins
 
@@ -1034,7 +1141,60 @@ namespace Pulse_Exporter
         }
 
         #endregion
-        
+
+        #region Screen
+
+        /// <summary>
+        /// Retransform the data.
+        /// </summary>
+        public bool IsRetransformData
+        {
+            get { return _Options.IsRetransformData; }
+            set
+            {
+                _Options.IsRetransformData = value;
+                this.NotifyOfPropertyChange(() => this.IsRetransformData);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        /// <summary>
+        /// Flag to Mark bad below bottom.
+        /// </summary>
+        public bool IsMarkBadBelowBottom
+        {
+            get { return _Options.IsMarkBadBelowBottom; }
+            set
+            {
+                _Options.IsMarkBadBelowBottom = value;
+                this.NotifyOfPropertyChange(() => this.IsMarkBadBelowBottom);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        /// <summary>
+        /// Remove ship speed.
+        /// </summary>
+        public bool IsRemoveShipSpeed
+        {
+            get { return _Options.IsRemoveShipSpeed; }
+            set
+            {
+                _Options.IsRemoveShipSpeed = value;
+                this.NotifyOfPropertyChange(() => this.IsRemoveShipSpeed);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -1075,6 +1235,7 @@ namespace Pulse_Exporter
             IsCsvSelected = true;
             IsMatlabSelected = true;
             IsPd0Selected = true;
+            IsEnsSelected = true;
 
             // Dialog to import RTB data
             SelectFolderCommand = ReactiveCommand.Create();
@@ -1200,6 +1361,7 @@ namespace Pulse_Exporter
             CsvExporterWriter csv = new CsvExporterWriter();
             MatlabExporterWriter matlab = new MatlabExporterWriter();
             Pd0ExporterWriter pd0 = new Pd0ExporterWriter();
+            EnsExporterWriter ensEx = new EnsExporterWriter();
             if (IsCsvSelected)
             {
                 csv.Open(folderPath, filename+".csv", _Options);
@@ -1212,21 +1374,34 @@ namespace Pulse_Exporter
             {
                 pd0.Open(folderPath, filename + ".pd0", _Options);
             }
+            if(IsEnsSelected)
+            {
+                ensEx.Open(folderPath, filename + ".ens", _Options);
+            }
 
             // Write all the ensembles to the exporters
             foreach(var ens in ensembles)
             {
+                RTI.DataSet.Ensemble cloneEns = ens.Ensemble.Clone();
+
+                // Screen the Ensemble based off the options
+                this.ScreenData(ref cloneEns, ens.OrigDataFormat);
+
                 if(IsCsvSelected)
                 {
-                    csv.Write(ens.Ensemble);
+                    csv.Write(cloneEns);
                 }
                 if(IsMatlabSelected)
                 {
-                    matlab.Write(ens.Ensemble);
+                    matlab.Write(cloneEns);
                 }
                 if (IsPd0Selected)
                 {
-                    pd0.Write(ens.Ensemble);
+                    pd0.Write(cloneEns);
+                }
+                if(IsEnsSelected)
+                {
+                    ensEx.Write(cloneEns);
                 }
             }
 
@@ -1242,6 +1417,10 @@ namespace Pulse_Exporter
             if (IsPd0Selected)
             {
                 pd0.Close();
+            }
+            if(IsEnsSelected)
+            {
+                ensEx.Close();
             }
         }
 
@@ -1483,6 +1662,82 @@ namespace Pulse_Exporter
 
         #endregion
 
+        #region Screen data
+
+        private void ScreenData(ref RTI.DataSet.Ensemble ensemble, RTI.AdcpCodec.CodecEnum origDataFormat)
+        {
+            // Retransform the data
+            if (IsRetransformData)
+            {
+                // PD0 has a different cooridiate matrix
+                // And the beams are in different positions
+                Transform.ProfileTransform(ref ensemble, origDataFormat);
+                Transform.BottomTrackTransform(ref ensemble, origDataFormat);
+
+                // WaterMass transform data
+                // This will also create the ship data
+                if (ensemble.IsInstrumentWaterMassAvail)
+                {
+                    Transform.WaterMassTransform(ref ensemble, origDataFormat);
+                }
+            }
+
+            // Mark Bad Below Bottom
+            if (IsMarkBadBelowBottom)
+            {
+                RTI.ScreenData.ScreenMarkBadBelowBottom.Screen(ref ensemble);
+            }
+
+            // Remove Ship Speed
+            if (IsRemoveShipSpeed)
+            {
+                RTI.ScreenData.RemoveShipSpeed.RemoveVelocity(ref ensemble, _prevBtEast, _prevBtNorth, _prevBtVert, true, true);
+                RTI.ScreenData.RemoveShipSpeed.RemoveVelocityInstrument(ref ensemble, _prevShipSpeedX, _prevShipSpeedY, _prevShipSpeedZ, true, true);
+                RTI.ScreenData.RemoveShipSpeed.RemoveVelocityShip(ref ensemble, _prevShipSpeedTransverse, _prevShipSpeedLongitudinal, _prevShipSpeedNormal, true, true);
+
+                // Create the new velocity vectors based off the new data
+                RTI.DataSet.VelocityVectorHelper.CreateVelocityVector(ref ensemble);
+            }
+
+            // Record the previous ship speed values
+            SetPreviousShipSpeed(ensemble);
+        }
+
+        #endregion
+
+
+        #region Previous Ship Speed
+
+        /// <summary>
+        /// Store the previous Ship speed for the different velocity coordinate transforms.
+        /// </summary>
+        /// <param name="ens">Ensembles.</param>
+        private void SetPreviousShipSpeed(RTI.DataSet.Ensemble ens)
+        {
+            // EARTH
+            // Record the Bottom for previous values
+            float[] prevShipSpeed = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeed(ens);
+            _prevBtEast = prevShipSpeed[0];
+            _prevBtNorth = prevShipSpeed[1];
+            _prevBtVert = prevShipSpeed[2];
+
+            // Instrument
+            // Record the Bottom for previous values
+            float[] prevShipSpeedInstrument = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeedInstrument(ens);
+            _prevShipSpeedX = prevShipSpeedInstrument[0];
+            _prevShipSpeedY = prevShipSpeedInstrument[1];
+            _prevShipSpeedZ = prevShipSpeedInstrument[2];
+
+            // Ship
+            // Record the Bottom for previous values
+            float[] prevShipSpeedShip = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeedShip(ens);
+            _prevShipSpeedTransverse = prevShipSpeedShip[0];
+            _prevShipSpeedLongitudinal = prevShipSpeedShip[1];
+            _prevShipSpeedNormal = prevShipSpeedShip[2];
+
+        }
+
+        #endregion
 
 
     }

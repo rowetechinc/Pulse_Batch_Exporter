@@ -12,6 +12,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Margin="5">
@@ -35,24 +36,31 @@
             <!--Exports-->
             <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
                 <TextBlock Text="Select Output Formats: " Foreground="#FF1585B5" Margin="5" />
-                <ToggleButton Command="{Binding Path=ExportCsvCommand}" IsChecked="{Binding IsCsvSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the selected project's ensembles to a CSV format." >
+                <ToggleButton Command="{Binding Path=ExportCsvCommand}" IsChecked="{Binding IsCsvSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a CSV format." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="CSV" HorizontalAlignment="Center" FontSize="11" Foreground="#FFF7FF12" />
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" IsChecked="{Binding IsMatlabSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the selected project's ensembles to a Matlab format.  Each file will contain a single ensemble." >
+                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" IsChecked="{Binding IsMatlabSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a Matlab format.  Each file will contain a single ensemble." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="Matlab" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportPd0Command}" IsChecked="{Binding IsPd0Selected}" Margin="5" Width="90" Height="90" ToolTip="Export the selected project's ensembles to a PD0 format." >
+                <ToggleButton Command="{Binding Path=ExportPd0Command}" IsChecked="{Binding IsPd0Selected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a PD0 format." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="PD0" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
+                    </StackPanel>
+                </ToggleButton>
+
+                <ToggleButton Command="{Binding Path=ExportEnsCommand}" IsChecked="{Binding IsEnsSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a ENS format." >
+                    <StackPanel Margin="5">
+                        <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
+                        <TextBlock Text="ENS" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
                     </StackPanel>
                 </ToggleButton>
 
@@ -67,7 +75,7 @@
 
         </Grid>
 
-        <ScrollViewer Grid.Row="1" Margin="5" Background="{StaticResource PulseBackBorder2Color}">
+        <ScrollViewer Grid.Row="1" Margin="5" Background="{StaticResource PulseBackBorder2Color}" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -266,7 +274,24 @@
             </Grid>
         </ScrollViewer>
 
-        <Button Grid.Row="2" Margin="15" Command="{Binding Path=ImportRtbDataCommand}" Content="Select Files" Background="{StaticResource ClockBackgroundColor}" Foreground="{StaticResource ClockFontColor}" FontSize="26.667" />
+        <Border Grid.Row="2" Background="#FF333337" Margin="5">
+            <StackPanel Margin="20,5">
+                <TextBlock Text="Screen Data" Foreground="White" FontWeight="Bold" FontSize="18" Margin="5" />
+
+                <!--Mark Bad Below Bottom data-->
+                <CheckBox Content="Mark Bad Below Bottom" IsChecked="{Binding IsMarkBadBelowBottom}" Margin="5" ToolTip="Mark all velocity data below the bottom as bad velocity." />
+
+                <!--Retransform data-->
+                <CheckBox Content="Remove Ship Speed" IsChecked="{Binding IsRemoveShipSpeed}" Margin="5" ToolTip="Remove the ship speed from all the water velocity data." />
+
+                <!--Retransform data-->
+                <CheckBox Content="Re-Transform Data" IsChecked="{Binding IsRetransformData}" Margin="5" ToolTip="Re-transform the data.  This will recalculate Instrument, Ship and Earth data." />
+
+            </StackPanel>
+            
+        </Border>
+        
+        <Button Grid.Row="3" Margin="15" Command="{Binding Path=ImportRtbDataCommand}" Content="Select Files" Background="{StaticResource ClockBackgroundColor}" Foreground="{StaticResource ClockFontColor}" FontSize="26.667" />
 
         <!--Progress Ring-->
         <Viewbox Grid.Row="1" Height="200" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" >
