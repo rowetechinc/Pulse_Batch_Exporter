@@ -243,7 +243,7 @@ namespace Pulse_Exporter
         /// </summary>
         private bool _IsMatlabSelected;
         /// <summary>
-        /// Flag to if CSV export is selected.
+        /// Flag to if Matlab export is selected.
         /// </summary>
         public bool IsMatlabSelected
         {
@@ -252,6 +252,23 @@ namespace Pulse_Exporter
             {
                 _IsMatlabSelected = value;
                 this.NotifyOfPropertyChange(() => this.IsMatlabSelected);
+            }
+        }
+
+        /// <summary>
+        /// Flag to if Matlab Matrix export is selected.
+        /// </summary>
+        private bool _IsMatlabMatrixSelected;
+        /// <summary>
+        /// Flag to if Matlab Matrix export is selected.
+        /// </summary>
+        public bool IsMatlabMatrixSelected
+        {
+            get { return _IsMatlabMatrixSelected; }
+            set
+            {
+                _IsMatlabMatrixSelected = value;
+                this.NotifyOfPropertyChange(() => this.IsMatlabMatrixSelected);
             }
         }
 
@@ -1236,6 +1253,7 @@ namespace Pulse_Exporter
             IsMatlabSelected = true;
             IsPd0Selected = true;
             IsEnsSelected = true;
+            IsMatlabMatrixSelected = true;
 
             // Dialog to import RTB data
             SelectFolderCommand = ReactiveCommand.Create();
@@ -1360,6 +1378,7 @@ namespace Pulse_Exporter
             // The filename is name without the extension
             CsvExporterWriter csv = new CsvExporterWriter();
             MatlabExporterWriter matlab = new MatlabExporterWriter();
+            MatlabMatrixExporterWriter matlabMatrix = new MatlabMatrixExporterWriter();
             Pd0ExporterWriter pd0 = new Pd0ExporterWriter();
             EnsExporterWriter ensEx = new EnsExporterWriter();
             if (IsCsvSelected)
@@ -1370,7 +1389,11 @@ namespace Pulse_Exporter
             {
                 matlab.Open(folderPath, filename, _Options);
             }
-            if(IsPd0Selected)
+            if (IsMatlabMatrixSelected)
+            {
+                matlabMatrix.Open(folderPath, filename, _Options);
+            }
+            if (IsPd0Selected)
             {
                 pd0.Open(folderPath, filename + ".pd0", _Options);
             }
@@ -1395,6 +1418,10 @@ namespace Pulse_Exporter
                 {
                     matlab.Write(cloneEns);
                 }
+                if(IsMatlabMatrixSelected)
+                {
+                    matlabMatrix.Write(cloneEns);
+                }
                 if (IsPd0Selected)
                 {
                     pd0.Write(cloneEns);
@@ -1413,6 +1440,10 @@ namespace Pulse_Exporter
             if (IsMatlabSelected)
             {
                 matlab.Close();
+            }
+            if(IsMatlabMatrixSelected)
+            {
+                matlabMatrix.Close();
             }
             if (IsPd0Selected)
             {

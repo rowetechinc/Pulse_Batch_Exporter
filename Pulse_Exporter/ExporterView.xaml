@@ -36,28 +36,38 @@
             <!--Exports-->
             <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal">
                 <TextBlock Text="Select Output Formats: " Foreground="#FF1585B5" Margin="5" />
-                <ToggleButton Command="{Binding Path=ExportCsvCommand}" IsChecked="{Binding IsCsvSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a CSV format." >
+
+                <ToggleButton Command="{Binding Path=ExportCsvCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsCsvSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a CSV format." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="CSV" HorizontalAlignment="Center" FontSize="11" Foreground="#FFF7FF12" />
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" IsChecked="{Binding IsMatlabSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a Matlab format.  Each file will contain a single ensemble." >
+                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsMatlabSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a Matlab format.  Each file will contain a single ensemble." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="Matlab" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportPd0Command}" IsChecked="{Binding IsPd0Selected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a PD0 format." >
+                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsMatlabMatrixSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a Matlab matrix. Each file will contain a matrix of the ensembles and a single type of value (U, Ubt, ...)" >
+                    <StackPanel Margin="5">
+                        <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
+                        <Viewbox>
+                            <TextBlock Text="Matlab Matrix" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
+                        </Viewbox>
+                    </StackPanel>
+                </ToggleButton>
+
+                <ToggleButton Command="{Binding Path=ExportPd0Command}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsPd0Selected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a PD0 format." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="PD0" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportEnsCommand}" IsChecked="{Binding IsEnsSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a ENS format." >
+                <ToggleButton Command="{Binding Path=ExportEnsCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsEnsSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a ENS format." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="ENS" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
