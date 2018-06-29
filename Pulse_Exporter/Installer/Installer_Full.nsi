@@ -20,7 +20,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;Name and file
 	Name "Rowe Technology Inc. - Pulse Exporter"
-	OutFile "Pulse_Exporter.Installer.v.1.1.0.Full.exe"
+	OutFile "Pulse_Exporter.Installer.v.1.2.0.Full.exe"
 
 	;Default installation folder
 	InstallDir "$PROGRAMFILES\Rowe Technology Inc\Pulse_Exporter"
@@ -70,9 +70,9 @@ Var /GLOBAL VERSION_MINOR
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Section "Core" SecCore
 
-	StrCpy $VERSION_NUM "1.1.0" 
+	StrCpy $VERSION_NUM "1.2.0" 
 	StrCpy $VERSION_MAJOR "1"
-	StrCpy $VERSION_MINOR "1"
+	StrCpy $VERSION_MINOR "2"
 
 	SetOutPath $INSTDIR
 

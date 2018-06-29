@@ -1,0 +1,10 @@
+﻿Pulse Batch Exporter Changelog
+
+Batch Exporter-1.2.0
+ - Added Matlab Matrix export option
+
+Batch Exporter-1.1.0
+ - Added ENS export option
+
+Batch Exporter-1.0.0
+ - Initial release
