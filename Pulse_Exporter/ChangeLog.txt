@@ -1,5 +1,9 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch Exporter-1.3.0
+ - Added the Error Logger.
+ * Fixed Fody.  It was not including all the files.
+
 Batch Exporter-1.2.0
  - Added Matlab Matrix export option
 

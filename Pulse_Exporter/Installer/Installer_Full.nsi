@@ -20,7 +20,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;Name and file
 	Name "Rowe Technology Inc. - Pulse Exporter"
-	OutFile "Pulse_Exporter.Installer.v.1.2.0.Full.exe"
+	OutFile "Pulse_Exporter.Installer.v.1.3.0.Full.exe"
 
 	;Default installation folder
 	InstallDir "$PROGRAMFILES\Rowe Technology Inc\Pulse_Exporter"
@@ -70,9 +70,9 @@ Var /GLOBAL VERSION_MINOR
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Section "Core" SecCore
 
-	StrCpy $VERSION_NUM "1.2.0" 
+	StrCpy $VERSION_NUM "1.3.0" 
 	StrCpy $VERSION_MAJOR "1"
-	StrCpy $VERSION_MINOR "2"
+	StrCpy $VERSION_MINOR "3"
 
 	SetOutPath $INSTDIR
 
@@ -81,9 +81,8 @@ Section "Core" SecCore
 	CreateDirectory "$INSTDIR\x64"
 	CreateDirectory "$INSTDIR\x86"
 	File "..\bin\Release\Pulse_Exporter.exe"
-	File "..\bin\Release\RTI.dll"
-	File "/oname=x64\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\x64\SQLite.Interop.dll"
-	File "/oname=x86\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.99.0\build\net451\x86\SQLite.Interop.dll"
+	File "/oname=x64\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\x64\SQLite.Interop.dll"
+	File "/oname=x86\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\x86\SQLite.Interop.dll"
 	
 	; Create shortcut in start menu
 	CreateDirectory "$SMPROGRAMS\Pulse Exporter"
