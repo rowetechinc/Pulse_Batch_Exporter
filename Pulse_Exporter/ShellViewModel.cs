@@ -46,7 +46,8 @@ namespace Pulse_Exporter
             fileAppender.File = @"C:\RTI_Capture\ExporterErrorLog.log";
             PatternLayout pl = new PatternLayout();
             string pulseVer = System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString();
-            string rtiVer = System.Reflection.Assembly.LoadFrom("RTI.dll").GetName().Version.ToString();
+            //string rtiVer = System.Reflection.Assembly.LoadFrom("RTI.dll").GetName().Version.ToString();
+            string rtiVer = "";
             pl.ConversionPattern = "%d [%2%t] %-5p [%-10c] Pulse:" + pulseVer + " RTI:" + rtiVer + "   %m%n%n";
             pl.ActivateOptions();
 

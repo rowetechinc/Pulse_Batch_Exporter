@@ -199,12 +199,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RTI\RTI.csproj">
-      <Project>{b69f49cd-cca9-4532-a4a0-e185cd3fab33}</Project>
-      <Name>RTI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Installer\License.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +206,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RTI\RTI.csproj">
+      <Project>{b69f49cd-cca9-4532-a4a0-e185cd3fab33}</Project>
+      <Name>RTI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
