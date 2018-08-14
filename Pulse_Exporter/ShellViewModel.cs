@@ -1,8 +1,13 @@
+using AutoUpdaterDotNET;
 using Caliburn.Micro;
 using log4net.Appender;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
+using System;
 using System.IO;
+using System.Net;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace Pulse_Exporter 
 {
@@ -19,6 +24,9 @@ namespace Pulse_Exporter
         public ShellViewModel()
         {
             base.DisplayName = "Pulse Batch Exporter";
+
+            // Check Auto Updater
+            CheckAutoUpdater();
 
             // Setup the error log
             SetupErrorLog();
@@ -76,6 +84,88 @@ namespace Pulse_Exporter
                 {
                     writer.WriteLine("");
                 }
+            }
+        }
+
+        #endregion
+
+        #region Auto Updater
+
+        /// <summary>
+        /// Check for the latest version of the exporter.
+        /// </summary>
+        private void CheckAutoUpdater()
+        {
+            AutoUpdater.Start("http://www.rowetechinc.co/pulse/Pulse_Exporter_AppCast.xml");
+            AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
+            AutoUpdater.ApplicationExitEvent += AutoUpdater_ApplicationExitEvent;
+        }
+
+
+
+        private void AutoUpdater_ApplicationExitEvent()
+        {
+            //Text = @"Closing application...";
+            //Thread.Sleep(1000);
+            Application.Exit();
+        }
+
+        private void AutoUpdaterOnCheckForUpdateEvent(UpdateInfoEventArgs args)
+        {
+            if (args != null)
+            {
+                if (args.IsUpdateAvailable)
+                {
+                    DialogResult dialogResult;
+                    if (args.Mandatory)
+                    {
+                        dialogResult =
+                            MessageBox.Show(
+                                $@"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. This is required update. Press Ok to begin updating the application.", @"Update Available",
+                                MessageBoxButtons.OKCancel,
+                                MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        dialogResult =
+                            MessageBox.Show(
+                                $@"There is new version {args.CurrentVersion} available. You are using version {
+                                        args.InstalledVersion
+                                    }. Do you want to update the application now?", @"Update Available",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information);
+                    }
+
+                    // Uncomment the following line if you want to show standard update dialog instead.
+                    // AutoUpdater.ShowUpdateForm();
+
+                    if (dialogResult.Equals(DialogResult.Yes) || dialogResult.Equals(DialogResult.OK))
+                    {
+                        try
+                        {
+                            if (AutoUpdater.DownloadUpdate())
+                            {
+                                Application.Exit();
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            MessageBox.Show(exception.Message, exception.GetType().ToString(), MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show(@"There is no update available please try again later.", @"No update available",
+                    //    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                        @"There is a problem reaching update server please check your internet connection and try again later.",
+                        @"Update check failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

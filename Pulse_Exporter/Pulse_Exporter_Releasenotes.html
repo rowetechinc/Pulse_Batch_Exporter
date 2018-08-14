@@ -1,0 +1,92 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Version 1.5.0 ChangeLog</title>
+    <style type="text/css">
+        .auto-style1 {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <br /><span class="auto-style1">Pulse_Exporter-1.5.0</span>
+        <br />  Batch_Exporter-1.5.0
+        <br />  * Inverted the sign of the Bottom Track Velocity when converting from RTI to PD0.
+        <br />  - Added Auto Updater.
+        <br />
+        <br />  Batch Exporter-1.4.0
+        <br />  - Export PD0 NMEA data.
+        <br />
+        <br />  Batch Exporter-1.3.0
+        <br />  - Added the Error Logger.
+        <br />  * Fixed Fody.  It was not including all the files.
+        <br />
+        <br />  Batch Exporter-1.2.0
+        <br />  - Added Matlab Matrix export option
+        <br />
+        <br />  Batch Exporter-1.1.0
+        <br />  - Added ENS export option
+        <br />
+        <br />  Batch Exporter-1.0.0
+        <br />  - Initial release
+        <br />
+        <br /><span class="auto-style1">RTI-3.4.9</span>
+        <br />    RTI-3.4.9
+        <br />   * In Pd0BottomTrack, inverted the sign of the Bottom Track Velocity when converting from RTI to PD0.
+        <br />
+        <br />   RTI-3.4.8
+        <br />   * In AdcpSubsystemCommands, changed the CepoIndex in the command to a Hex value.
+        <br />   * Made CBI command output on all the command lists.
+        <br />   * In AdcpDatabaseWriter, put a try/catch in Dispose if the writer is closed while still writing.
+        <br />
+        <br />   RTI-3.4.7
+        <br />   * Fixed bug in DecodeCSHOW with DecodeCWPRT and only 2 parameters.
+        <br />   * In AdcpSubsystemCommand, increased the number of paramater for CBI from 2 to 3. AdcpSubsystemCommands.CBI_NUM_PARAM
+        <br />   * Fixed bug in DecodeCSHOW with DecodeCBI() and added the interleave flag.
+        <br />   - In MathHelper, added AddColumn and AddRow for 2D arrays.
+        <br />
+        <br />   RTI-3.4.6
+        <br />   * Changed DilutionOfPrecision to not throw an exception but pass NaN.
+        <br />   * Added CBTON and CBI to deployment command list.
+        <br />
+        <br />   RTI-3.4.5
+        <br />   - Added Previous BT Range to ScreenMarkBadBelowBottom.
+        <br />   - In BottomTrackDataSet, DvlDataSet and AncillaryDataSet, added IsUpwardFacing() to know the direction the ADCP is facing.
+        <br />   - In AncillaryDataSet, added BinToDepth().
+        <br />   - In AdcpCodec, clear the buffer if the format is not being used.
+        <br />   - In Pd4_5Codec, lock the headerStart when clearing the codec.
+        <br />   - In PD4_5Codec, made it match PD0 style.
+        <br />   - In Ensemble added FileName.
+        <br />   - In NmeaDataSet, check for exceptions in SetValue() and SetNmeaStringArray().
+        <br />   - In SerialOptions, added 57600 baud rate.
+        <br />
+        <br />   RTI-3.4.4
+        <br />   - In InstrumentVelocityDataSet and EarthVelocityDataSet, if no Water Profile, fix bug IsBinGood() to check if the bin is good.
+        <br />   - In Subsystem, added GetBeamAngle() to give the beam angle for a given subsystem.
+        <br />   - In Transform, get the correct Beam Angle based off the subsystem code.
+        <br />   - In Subsystem, added new Subsystem codes.
+        <br />   - In AdcpCodec, pass the original data format when the data is sent based off the codec used.
+        <br />   - In Transform, know the original data format to know which beam matrix to use to transform the data.
+        <br />   - In AdcpDvlCodecReadFile, AdcpBinaryCodecReadFile, AdcpPd0CodecReadFile, added original data format.
+        <br />   - In IPlayback, added GetOrigDataFormat() to know the what format the data was recorded.
+        <br />   - In FilePlayback and ProjectPlayback, pass the data format the data was recorded.
+        <br />   - Added EnsExporterWriter.
+        <br />   - Fixed bug in Pd6_13Codec where _buffer was not initialized and threw an exception.
+        <br />   - Fixed bug in DvlCodec where _buffer was not initialized and threw an exception.
+        <br />
+        <br />   RTI-3.4.3
+        <br />   - Fixed bug by adding a line feed to the end EnsToPd6_13Codec.
+        <br />   - Made the spacing for the PD6 data match the documentation.
+        <br />   - In RemoveShipSpeed, added GetPreviousBottomTrackVelocity() to get the previous Bottom Track velocity to store for next iteration.
+        <br />   - In ShipVelocityDataSet, added VelocityVectors.
+        <br />   - In VelocityVector, added GenerateShipVectors().
+        <br />   - Added AdcpUdp.
+        <br />   - In BottomTrackDataSet, fixed bug if no beams in data.
+        <br />   - In RemoveShipSpeed, check if Bottom Track has no beams.
+        <br />   - In PD4_5Codec, fixed a bug where the thread lock holds in SearchForHeaderStart().
+        <br />   - In SerialNumber, added option to add new line in GetSerialNumberDescString().
+        <br />
+    </p>
+</body>
+</html>

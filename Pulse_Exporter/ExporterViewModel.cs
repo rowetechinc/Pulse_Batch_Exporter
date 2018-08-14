@@ -167,6 +167,14 @@ namespace Pulse_Exporter
         /// <summary>
         /// Export options.
         /// </summary>
+        public string Version
+        {
+            get { return System.Reflection.Assembly.GetEntryAssembly().GetName().Version.ToString(); ; }
+        }
+
+        /// <summary>
+        /// Export options.
+        /// </summary>
         private ExportOptions _Options;
         /// <summary>
         /// Export options.
@@ -1735,7 +1743,6 @@ namespace Pulse_Exporter
         }
 
         #endregion
-
 
         #region Previous Ship Speed
 
