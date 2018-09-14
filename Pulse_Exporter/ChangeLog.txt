@@ -1,5 +1,9 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch_Exporter-1.6.0
+ - Update RTI library.
+ * Fixed a bug in Matlab Matrix Exporter.
+
 Batch_Exporter-1.5.0
  * Inverted the sign of the Bottom Track Velocity when converting from RTI to PD0.
  - Added Auto Updater.

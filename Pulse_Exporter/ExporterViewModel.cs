@@ -1319,10 +1319,12 @@ namespace Pulse_Exporter
             catch (AccessViolationException ae)
             {
                 log.Error("Error trying to open file", ae);
+                IsExporting = false;
             }
             catch (Exception e)
             {
                 log.Error("Error trying to open file", e);
+                IsExporting = false;
             }
         }
 

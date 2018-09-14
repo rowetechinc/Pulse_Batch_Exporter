@@ -20,7 +20,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	;Name and file
 	Name "Rowe Technology Inc. - Pulse Exporter"
-	OutFile "Pulse_Exporter.Installer.v.1.5.0.Full.exe"
+	OutFile "Pulse_Exporter.Installer.v.1.6.0.Full.exe"
 
 	;Default installation folder
 	InstallDir "$PROGRAMFILES\Rowe Technology Inc\Pulse_Exporter"
@@ -70,11 +70,14 @@ Var /GLOBAL VERSION_MINOR
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Section "Core" SecCore
 
-	StrCpy $VERSION_NUM "1.5.0" 
+	StrCpy $VERSION_NUM "1.6.0" 
 	StrCpy $VERSION_MAJOR "1"
-	StrCpy $VERSION_MINOR "5"
+	StrCpy $VERSION_MINOR "6"
 
 	SetOutPath $INSTDIR
+
+	; Remove old files if uninstaller not run
+	Delete "$INSTDIR\RTI.dll"
 
 	; Add Files
 	DetailPrint "Installing Pulse Exporter."

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>Version 1.5.0 ChangeLog</title>
+    <title>Version 1.6.0 ChangeLog</title>
     <style type="text/css">
         .auto-style1 {
             text-decoration: underline;
@@ -10,7 +10,11 @@
 </head>
 <body>
     <p>
-        <br /><span class="auto-style1">Pulse_Exporter-1.5.0</span>
+        <br /><span class="auto-style1">Pulse_Exporter-1.6.0</span>
+        <br />  Batch_Exporter-1.6.0
+        <br />  - Update RTI library.
+        <br />  * Fixed a bug in Matlab Matrix Exporter.
+        <br />
         <br />  Batch_Exporter-1.5.0
         <br />  * Inverted the sign of the Bottom Track Velocity when converting from RTI to PD0.
         <br />  - Added Auto Updater.
@@ -31,7 +35,12 @@
         <br />  Batch Exporter-1.0.0
         <br />  - Initial release
         <br />
-        <br /><span class="auto-style1">RTI-3.4.9</span>
+        <br /><span class="auto-style1">RTI-3.4.10</span>
+        <br />    RTI-3.4.10
+        <br />    * In RemoveShipSpeed, in RemoveVelocityInstrument, check if the Instrument Velocity exist instead of Earth.
+        <br />    * In PD4_5Codec, check if the buffer has at least 1 byte when removing, in SearchForHeaderStart().
+        <br />    * In MatlabMatrixExporterWriter, check if the data exist before trying to write it.
+        <br />
         <br />    RTI-3.4.9
         <br />   * In Pd0BottomTrack, inverted the sign of the Bottom Track Velocity when converting from RTI to PD0.
         <br />
