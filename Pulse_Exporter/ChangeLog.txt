@@ -1,5 +1,8 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch_Exporter-1.7.0
+ - Added ability to handle multiple configurations in a single file.
+
 Batch_Exporter-1.6.0
  - Update RTI library.
  * Fixed a bug in Matlab Matrix Exporter.

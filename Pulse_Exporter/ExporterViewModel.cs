@@ -130,6 +130,11 @@ namespace Pulse_Exporter
 
         #endregion
 
+        /// <summary>
+        /// Store the export writers for each configuration. 
+        /// </summary>
+        private Dictionary<SubsystemConfiguration, ExportWriter> _exportWriters;
+
         #endregion
 
         #region Enum
@@ -1244,6 +1249,8 @@ namespace Pulse_Exporter
         {
             base.DisplayName = name;
 
+            _exportWriters = new Dictionary<SubsystemConfiguration, ExportWriter>();
+
             // Coordinate Transform list
             CoordinateTransformList = new List<string>();
             CoordinateTransformList.Add(XFORM_BEAM);
@@ -1384,84 +1391,53 @@ namespace Pulse_Exporter
         /// <param name="filename">Filename without the extension.</param>
         private void WriteEnsembles(List<RTI.FilePlayback.EnsembleData> ensembles, string folderPath, string filename)
         {
-            // Open all the exporters that are selected
-            // The filename is name without the extension
-            CsvExporterWriter csv = new CsvExporterWriter();
-            MatlabExporterWriter matlab = new MatlabExporterWriter();
-            MatlabMatrixExporterWriter matlabMatrix = new MatlabMatrixExporterWriter();
-            Pd0ExporterWriter pd0 = new Pd0ExporterWriter();
-            EnsExporterWriter ensEx = new EnsExporterWriter();
-            if (IsCsvSelected)
-            {
-                csv.Open(folderPath, filename+".csv", _Options);
-            }
-            if(IsMatlabSelected)
-            {
-                matlab.Open(folderPath, filename, _Options);
-            }
-            if (IsMatlabMatrixSelected)
-            {
-                matlabMatrix.Open(folderPath, filename, _Options);
-            }
-            if (IsPd0Selected)
-            {
-                pd0.Open(folderPath, filename + ".pd0", _Options);
-            }
-            if(IsEnsSelected)
-            {
-                ensEx.Open(folderPath, filename + ".ens", _Options);
-            }
-
             // Write all the ensembles to the exporters
             foreach(var ens in ensembles)
             {
                 RTI.DataSet.Ensemble cloneEns = ens.Ensemble.Clone();
 
-                // Screen the Ensemble based off the options
-                this.ScreenData(ref cloneEns, ens.OrigDataFormat);
+                lock (cloneEns.SyncRoot)
+                {
+                    // Screen the Ensemble based off the options
+                    this.ScreenData(ref cloneEns, ens.OrigDataFormat);
 
-                if(IsCsvSelected)
-                {
-                    csv.Write(cloneEns);
-                }
-                if(IsMatlabSelected)
-                {
-                    matlab.Write(cloneEns);
-                }
-                if(IsMatlabMatrixSelected)
-                {
-                    matlabMatrix.Write(cloneEns);
-                }
-                if (IsPd0Selected)
-                {
-                    pd0.Write(cloneEns);
-                }
-                if(IsEnsSelected)
-                {
-                    ensEx.Write(cloneEns);
+                    // Write the data to the selected exporters
+                    Write(cloneEns, folderPath, filename);
                 }
             }
 
-            // Close the files
-            if (IsCsvSelected)
+            // Close all the open exporters.
+            foreach(var exporters in _exportWriters.Values)
             {
-                csv.Close();
+                exporters.Close(IsCsvSelected,  IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
             }
-            if (IsMatlabSelected)
+        }
+
+        /// <summary>
+        /// Write the ensemble to the Exporter writers.  Based off the selections, the different exporters will be written.
+        /// </summary>
+        /// <param name="ens">Ensemble to write.</param>
+        /// <param name="folderPath">Folder path.</param>
+        /// <param name="filename">File name.</param>
+        private void Write(RTI.DataSet.Ensemble ens, string folderPath, string filename)
+        {
+            if (ens.IsEnsembleAvail)
             {
-                matlab.Close();
-            }
-            if(IsMatlabMatrixSelected)
-            {
-                matlabMatrix.Close();
-            }
-            if (IsPd0Selected)
-            {
-                pd0.Close();
-            }
-            if(IsEnsSelected)
-            {
-                ensEx.Close();
+                if (!_exportWriters.ContainsKey(ens.EnsembleData.SubsystemConfig))
+                {
+                    // Add to the file name the cepo index and subsystem code
+                    string filenameWithConfig = filename + string.Format("_{0}_{1}", ens.EnsembleData.SubsystemConfig.CommandSetupToString(), ens.EnsembleData.SubsystemConfig.SubSystem.DescString());
+
+                    // Create a writer for the subsystem configuration
+                    ExportWriter ew = new ExportWriter();
+                    ew.Open(folderPath, filenameWithConfig, _Options, IsCsvSelected, IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
+
+                    // Add the writer to the dictionary
+                    _exportWriters.Add(ens.EnsembleData.SubsystemConfig, ew);
+                }
+
+                // Write the data
+                _exportWriters[ens.EnsembleData.SubsystemConfig].Write(ens, IsCsvSelected, IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
             }
         }
 
