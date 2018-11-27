@@ -2,6 +2,7 @@
 
 Batch_Exporter-1.7.0
  - Added ability to handle multiple configurations in a single file.
+ - Removed the Bin selections.
 
 Batch_Exporter-1.6.0
  - Update RTI library.

@@ -1355,6 +1355,9 @@ namespace Pulse_Exporter
         {
             IsExporting = true;
 
+            // Clear the dictionary of previous use
+            _exportWriters.Clear();
+
             foreach (var file in files)
             {
                 // Create the folder for the exported data
@@ -1409,7 +1412,7 @@ namespace Pulse_Exporter
             // Close all the open exporters.
             foreach(var exporters in _exportWriters.Values)
             {
-                exporters.Close(IsCsvSelected,  IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
+                exporters.Close(IsCsvSelected, IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
             }
         }
 
@@ -1430,7 +1433,15 @@ namespace Pulse_Exporter
 
                     // Create a writer for the subsystem configuration
                     ExportWriter ew = new ExportWriter();
-                    ew.Open(folderPath, filenameWithConfig, _Options, IsCsvSelected, IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
+
+                    // Clone the options for this object
+                    // Each configuration needs its one options clone
+                    // because the bin number or other settings can change
+                    // between configurations
+                    ExportOptions clonedOptions = _Options.Clone();
+                    clonedOptions.UpdateOptions(ens);
+
+                    ew.Open(folderPath, filenameWithConfig, clonedOptions, IsCsvSelected, IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
 
                     // Add the writer to the dictionary
                     _exportWriters.Add(ens.EnsembleData.SubsystemConfig, ew);
@@ -1517,7 +1528,10 @@ namespace Pulse_Exporter
         #region Options
 
 
-
+        /// <summary>
+        /// Update the properties based off the first ensemble.
+        /// </summary>
+        /// <param name="ensembles">List of ensembles.</param>
         private void SetProperOptions(List<RTI.FilePlayback.EnsembleData> ensembles)
         {
             // Set max number of ensembles if not set

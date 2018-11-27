@@ -7,10 +7,11 @@
              xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit" 
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="700">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="250" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -129,32 +130,32 @@
 
                     <!--Title-->
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="Select" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Min Bin" Margin="5" />
-                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Max Bin" Margin="5" />
+                    <!--TextBlock Grid.Row="0" Grid.Column="2" Text="Min Bin" Margin="5" />
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Max Bin" Margin="5" /-->
 
                     <!--Beam Velocity-->
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Beam Velocity" Margin="5" />
                     <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding IsBeamVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="2" Value="{Binding BeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="3" Value="{Binding BeamMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="2" Value="{Binding BeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="3" Value="{Binding BeamMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
                     <!--Instrument Velocity-->
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Instrument Velocity" Margin="5" />
                     <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsInstrumentVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="2" Grid.Column="2" Value="{Binding InstrumentMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="2" Grid.Column="3" Value="{Binding InstrumentMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="2" Grid.Column="2" Value="{Binding InstrumentMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="2" Grid.Column="3" Value="{Binding InstrumentMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
                     <!--Earth Velocity-->
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Earth Velocity" Margin="5" />
                     <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsEarthVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="2" Value="{Binding EarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="3" Value="{Binding EarthMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="2" Value="{Binding EarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="3" Value="{Binding EarthMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
                     <!--Velocity Vector-->
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Velocity Vector" Margin="5" />
                     <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding IsVelocityVectorDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="2" Value="{Binding VelVectorMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="3" Value="{Binding VelVectorMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="2" Value="{Binding VelVectorMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="3" Value="{Binding VelVectorMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
                     <TextBlock Grid.Row="5" Grid.Column="0" Text="PD0 Coordinate Transform" Margin="5" />
                     <ComboBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="8,5,5,5" SelectedValue="{Binding CoordinateTransform}" ItemsSource="{Binding CoordinateTransformList}" Foreground="Black" Background="White"/>
@@ -162,26 +163,26 @@
                     <!--Amplitude-->
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Amplitude" Margin="5" />
                     <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding IsAmplitudeDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="6" Grid.Column="2" Value="{Binding AmplitudeMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="6" Grid.Column="3" Value="{Binding AmplitudeMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="6" Grid.Column="2" Value="{Binding AmplitudeMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="6" Grid.Column="3" Value="{Binding AmplitudeMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
                     <!--Correlation-->
                     <TextBlock Grid.Row="7" Grid.Column="0" Text="Correlation" Margin="5" />
                     <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding IsCorrelationDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="7" Grid.Column="2" Value="{Binding CorrelationMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="7" Grid.Column="3" Value="{Binding CorrelationMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="7" Grid.Column="2" Value="{Binding CorrelationMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="7" Grid.Column="3" Value="{Binding CorrelationMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
                     <!--Good Beam-->
                     <TextBlock Grid.Row="8" Grid.Column="0" Text="Good Beam" Margin="5" />
                     <CheckBox Grid.Row="8" Grid.Column="1" IsChecked="{Binding IsGoodBeamDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="8" Grid.Column="2" Value="{Binding GoodBeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="8" Grid.Column="3" Value="{Binding GoodBeamMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="8" Grid.Column="2" Value="{Binding GoodBeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="8" Grid.Column="3" Value="{Binding GoodBeamMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
                     <!--Good Earth-->
                     <TextBlock Grid.Row="9" Grid.Column="0" Text="Good Earth" Margin="5" />
                     <CheckBox Grid.Row="9" Grid.Column="1" IsChecked="{Binding IsGoodEarthDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    <extToolkit:IntegerUpDown Grid.Row="9" Grid.Column="2" Value="{Binding GoodEarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
-                    <extToolkit:IntegerUpDown Grid.Row="9" Grid.Column="3" Value="{Binding GoodEarthMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <!--extToolkit:IntegerUpDown Grid.Row="9" Grid.Column="2" Value="{Binding GoodEarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                    <extToolkit:IntegerUpDown Grid.Row="9" Grid.Column="3" Value="{Binding GoodEarthMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="1" Margin="20" >
@@ -333,4 +334,5 @@
         </Viewbox>
 
     </Grid>
+    </ScrollViewer>
 </UserControl>
