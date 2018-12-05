@@ -96,7 +96,7 @@ namespace Pulse_Exporter
         /// </summary>
         private void CheckAutoUpdater()
         {
-            AutoUpdater.Start("http://www.rowetechinc.co/pulse/Pulse_Exporter_AppCast.xml");
+            AutoUpdater.Start("http://www.rowetechinc.com/swfw/latest/Exporter/Pulse_Exporter_AppCast.xml");
             AutoUpdater.CheckForUpdateEvent += AutoUpdaterOnCheckForUpdateEvent;
             AutoUpdater.ApplicationExitEvent += AutoUpdater_ApplicationExitEvent;
         }
