@@ -1,5 +1,9 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch_Exporter-1.8.0
+ * Fixed when to close files when selecting multiple files.
+ - Resized the window.
+
 Batch_Exporter-1.7.0
  - Added ability to handle multiple configurations in a single file.
  - Removed the Bin selections.

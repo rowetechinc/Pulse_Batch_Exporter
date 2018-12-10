@@ -34,6 +34,7 @@
  * -----------------------------------------------------------------
  * 07/23/2017      RC          1.0.0      Initial coding
  * 10/06/2017      RC          1.1.0      Added screening options.
+ * 12/10/2018      RC          1.8.0      Fixed when to close files when selecting multiple files.
  * 
  */
 
@@ -1381,6 +1382,12 @@ namespace Pulse_Exporter
                 }
             }
 
+            // Close all the open exporters.
+            foreach (var exporters in _exportWriters.Values)
+            {
+                exporters.Close(IsCsvSelected, IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
+            }
+
             IsExporting = false;
         }
 
@@ -1407,12 +1414,6 @@ namespace Pulse_Exporter
                     // Write the data to the selected exporters
                     Write(cloneEns, folderPath, filename);
                 }
-            }
-
-            // Close all the open exporters.
-            foreach(var exporters in _exportWriters.Values)
-            {
-                exporters.Close(IsCsvSelected, IsMatlabSelected, IsMatlabMatrixSelected, IsPd0Selected, IsEnsSelected);
             }
         }
 
