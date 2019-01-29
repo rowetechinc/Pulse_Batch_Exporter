@@ -1,5 +1,8 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch_Exporter-1.9.0
+ - Added Range of First Bin and Bin Size to MATLAB matrix format.
+
 Batch_Exporter-1.8.0
  * Fixed when to close files when selecting multiple files.
  - Resized the window.

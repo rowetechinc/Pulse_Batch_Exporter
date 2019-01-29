@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>Version 1.8.0 ChangeLog</title>
+    <title>Version 1.9.0 ChangeLog</title>
     <style type="text/css">
         .auto-style1 {
             text-decoration: underline;
@@ -10,7 +10,10 @@
 </head>
 <body>
     <p>
-        <br /><span class="auto-style1">Pulse_Exporter-1.8.0</span>
+        <br /><span class="auto-style1">Pulse_Exporter-1.9.0</span>
+        <br />  Batch_Exporter-1.9.0
+        <br />  - Added Range of First Bin and Bin Size to MATLAB matrix format.
+        <br />
         <br />  Batch_Exporter-1.8.0
         <br />  * Fixed when to close files when selecting multiple files.
         <br />  - Resized the window.
@@ -43,7 +46,16 @@
         <br />  Batch Exporter-1.0.0
         <br />  - Initial release
         <br />
-        <br /><span class="auto-style1">RTI-3.4.10</span>
+        <br /><span class="auto-style1">RTI-3.4.11</span>
+        <br />    RTI-3.4.11
+        <br />    * In PD0ExporterWriter, fixed bug in PD0 Exporter with multiple configurations.
+        <br />    - Added ExportWriter to handle writing a configuration in exporter.
+        <br />    * In Pd0NmeaData, fixed the ID in the constructor.
+        <br />    * In Pd0NmeaData, initialized the string list of NMEA data.
+        <br />    - In Pd0ExporterWriter, removed the bin selection.
+        <br />    * In Transform, set the velocity bad in ProfileTransform() and BottomTrackTransform() if not good data.
+        <br />    - In MatlabMatrixExporter,  added Range of First Bin and Bin Size to ENS data.
+        <br />
         <br />    RTI-3.4.10
         <br />    * In RemoveShipSpeed, in RemoveVelocityInstrument, check if the Instrument Velocity exist instead of Earth.
         <br />    * In PD4_5Codec, check if the buffer has at least 1 byte when removing, in SearchForHeaderStart().
