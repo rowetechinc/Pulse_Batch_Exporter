@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>Version 1.9.0 ChangeLog</title>
+    <title>Version 1.10.0 ChangeLog</title>
     <style type="text/css">
         .auto-style1 {
             text-decoration: underline;
@@ -10,7 +10,10 @@
 </head>
 <body>
     <p>
-        <br /><span class="auto-style1">Pulse_Exporter-1.9.0</span>
+        <br /><span class="auto-style1">Pulse_Exporter-1.10.0</span>
+        <br />  Batch_Exporter-1.10.0
+        <br />  * In CsvExporterWriter, fixed bug with exporting CSV data with a 3 beam system.
+        <br />
         <br />  Batch_Exporter-1.9.0
         <br />  - Added Range of First Bin and Bin Size to MATLAB matrix format.
         <br />
@@ -55,6 +58,8 @@
         <br />    - In Pd0ExporterWriter, removed the bin selection.
         <br />    * In Transform, set the velocity bad in ProfileTransform() and BottomTrackTransform() if not good data.
         <br />    - In MatlabMatrixExporter,  added Range of First Bin and Bin Size to ENS data.
+        <br />    * In VelocityVector, in GenerateShipVectors, fixed bug with getting the size.
+        <br />    * In CsvExporterWriter, fixed bug with exporting CSV data with a 3 beam system.
         <br />
         <br />    RTI-3.4.10
         <br />    * In RemoveShipSpeed, in RemoveVelocityInstrument, check if the Instrument Velocity exist instead of Earth.
