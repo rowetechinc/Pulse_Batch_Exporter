@@ -1,5 +1,8 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch_Exporter-1.11.0
+  - Added Ship Velocity and Water Mass Ship Velocity to CSV export.
+
 Batch_Exporter-1.10.0
   * In CsvExporterWriter, fixed bug with exporting CSV data with a 3 beam system.
 

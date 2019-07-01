@@ -638,6 +638,58 @@ namespace Pulse_Exporter
 
         #endregion
 
+        #region Ship Velocity
+
+        /// <summary>
+        /// Earth Velocity enabled/disabled.
+        /// </summary>
+        public bool IsShipVelocityDataSetOn
+        {
+            get { return _Options.IsShipVelocityDataSetOn; }
+            set
+            {
+                _Options.IsShipVelocityDataSetOn = value;
+                this.NotifyOfPropertyChange(() => this.IsShipVelocityDataSetOn);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        /// <summary>
+        /// Ship Velocity minimum bin.
+        /// </summary>
+        public int ShipMinBin
+        {
+            get { return _Options.ShipMinBin; }
+            set
+            {
+                _Options.ShipMinBin = value;
+                this.NotifyOfPropertyChange(() => this.ShipMinBin);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        /// <summary>
+        /// Ship Velocity maximum bin.
+        /// </summary>
+        public int ShipMaxBin
+        {
+            get { return _Options.ShipMaxBin; }
+            set
+            {
+                _Options.ShipMaxBin = value;
+                this.NotifyOfPropertyChange(() => this.ShipMaxBin);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        #endregion
+
         #region Velocity Vector
 
         /// <summary>
@@ -945,6 +997,26 @@ namespace Pulse_Exporter
             {
                 _Options.IsInstrumentWaterMassDataSetOn = value;
                 this.NotifyOfPropertyChange(() => this.IsInstrumentWaterMassDataSetOn);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        #endregion
+
+        #region Ship Water Mass
+
+        /// <summary>
+        /// Ship Water Mass enabled/disabled.
+        /// </summary>
+        public bool IsShipWaterMassDataSetOn
+        {
+            get { return _Options.IsShipWaterMassDataSetOn; }
+            set
+            {
+                _Options.IsShipWaterMassDataSetOn = value;
+                this.NotifyOfPropertyChange(() => this.IsShipWaterMassDataSetOn);
 
                 // Save Options
                 SaveOptions();
@@ -1587,7 +1659,13 @@ namespace Pulse_Exporter
                 _Options.EarthMaxBin = maxNumBins;
             }
 
-            if(_Options.GoodBeamMaxBin == 0)
+            if (_Options.ShipMaxBin == 0)
+            {
+
+                _Options.ShipMaxBin = maxNumBins;
+            }
+
+            if (_Options.GoodBeamMaxBin == 0)
             {
                 
                 _Options.GoodBeamMaxBin = maxNumBins;
@@ -1650,6 +1728,11 @@ namespace Pulse_Exporter
             }
 
             if (EarthMaxBin <= 0)
+            {
+                EarthMaxBin = MaximumBin;
+            }
+
+            if (ShipMaxBin <= 0)
             {
                 EarthMaxBin = MaximumBin;
             }
