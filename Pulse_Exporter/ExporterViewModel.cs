@@ -1449,8 +1449,21 @@ namespace Pulse_Exporter
                     // Because the number of ensembles and number of bins is not known for each file
                     SetProperOptions(ensembles);
 
-                    // Write the data to exporter
-                    WriteEnsembles(ensembles, folderpath, filename);
+                    try
+                    {
+                        // Write the data to exporter
+                        WriteEnsembles(ensembles, folderpath, filename);
+                    }
+                    catch (AccessViolationException ae)
+                    {
+                        log.Error("Error trying to open file: " + file, ae);
+                        IsExporting = false;
+                    }
+                    catch (Exception e)
+                    {
+                        log.Error("Error trying to open file: " + file, e);
+                        IsExporting = false;
+                    }
                 }
             }
 

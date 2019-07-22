@@ -7,3 +7,4 @@ Log/
 log/
 *.db
 packages/
+.vs/
