@@ -35,6 +35,7 @@
  * 07/23/2017      RC          1.0.0      Initial coding
  * 10/06/2017      RC          1.1.0      Added screening options.
  * 12/10/2018      RC          1.8.0      Fixed when to close files when selecting multiple files.
+ * 07/31/2019      RC          1.13.1     Added option to select GPS or BT to remove the ship speed.
  * 
  */
 
@@ -1280,15 +1281,31 @@ namespace Pulse_Exporter
         }
 
         /// <summary>
-        /// Remove ship speed.
+        /// Remove ship speed using the GPS data.
         /// </summary>
-        public bool IsRemoveShipSpeed
+        public bool IsRemoveShipSpeedGPS
         {
-            get { return _Options.IsRemoveShipSpeed; }
+            get { return _Options.IsRemoveShipSpeedGPS; }
             set
             {
-                _Options.IsRemoveShipSpeed = value;
-                this.NotifyOfPropertyChange(() => this.IsRemoveShipSpeed);
+                _Options.IsRemoveShipSpeedGPS = value;
+                this.NotifyOfPropertyChange(() => this.IsRemoveShipSpeedGPS);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        /// <summary>
+        /// Remove ship speed using the Bottom Track data.
+        /// </summary>
+        public bool IsRemoveShipSpeedBT
+        {
+            get { return _Options.IsRemoveShipSpeedBT; }
+            set
+            {
+                _Options.IsRemoveShipSpeedBT = value;
+                this.NotifyOfPropertyChange(() => this.IsRemoveShipSpeedBT);
 
                 // Save Options
                 SaveOptions();
@@ -1817,11 +1834,11 @@ namespace Pulse_Exporter
             }
 
             // Remove Ship Speed
-            if (IsRemoveShipSpeed)
+            if (IsRemoveShipSpeedBT | IsRemoveShipSpeedGPS)
             {
-                RTI.ScreenData.RemoveShipSpeed.RemoveVelocity(ref ensemble, _prevBtEast, _prevBtNorth, _prevBtVert, true, true);
-                RTI.ScreenData.RemoveShipSpeed.RemoveVelocityInstrument(ref ensemble, _prevShipSpeedX, _prevShipSpeedY, _prevShipSpeedZ, true, true);
-                RTI.ScreenData.RemoveShipSpeed.RemoveVelocityShip(ref ensemble, _prevShipSpeedTransverse, _prevShipSpeedLongitudinal, _prevShipSpeedNormal, true, true);
+                RTI.ScreenData.RemoveShipSpeed.RemoveVelocity(ref ensemble, _prevBtEast, _prevBtNorth, _prevBtVert, IsRemoveShipSpeedBT, IsRemoveShipSpeedGPS);
+                RTI.ScreenData.RemoveShipSpeed.RemoveVelocityInstrument(ref ensemble, _prevShipSpeedX, _prevShipSpeedY, _prevShipSpeedZ, IsRemoveShipSpeedBT, IsRemoveShipSpeedGPS);
+                RTI.ScreenData.RemoveShipSpeed.RemoveVelocityShip(ref ensemble, _prevShipSpeedTransverse, _prevShipSpeedLongitudinal, _prevShipSpeedNormal, IsRemoveShipSpeedBT, IsRemoveShipSpeedGPS);
 
                 // Create the new velocity vectors based off the new data
                 RTI.DataSet.VelocityVectorHelper.CreateVelocityVector(ref ensemble);
@@ -1843,25 +1860,24 @@ namespace Pulse_Exporter
         {
             // EARTH
             // Record the Bottom for previous values
-            float[] prevShipSpeed = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeed(ens);
+            float[] prevShipSpeed = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeed(ens, 0, IsRemoveShipSpeedBT, IsRemoveShipSpeedGPS);
             _prevBtEast = prevShipSpeed[0];
             _prevBtNorth = prevShipSpeed[1];
             _prevBtVert = prevShipSpeed[2];
 
             // Instrument
             // Record the Bottom for previous values
-            float[] prevShipSpeedInstrument = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeedInstrument(ens);
+            float[] prevShipSpeedInstrument = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeedInstrument(ens, 0, IsRemoveShipSpeedBT, IsRemoveShipSpeedGPS);
             _prevShipSpeedX = prevShipSpeedInstrument[0];
             _prevShipSpeedY = prevShipSpeedInstrument[1];
             _prevShipSpeedZ = prevShipSpeedInstrument[2];
 
             // Ship
             // Record the Bottom for previous values
-            float[] prevShipSpeedShip = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeedShip(ens);
+            float[] prevShipSpeedShip = RTI.ScreenData.RemoveShipSpeed.GetPreviousShipSpeedShip(ens, 0, IsRemoveShipSpeedBT, IsRemoveShipSpeedGPS);
             _prevShipSpeedTransverse = prevShipSpeedShip[0];
             _prevShipSpeedLongitudinal = prevShipSpeedShip[1];
             _prevShipSpeedNormal = prevShipSpeedShip[2];
-
         }
 
         #endregion

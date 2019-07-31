@@ -45,21 +45,21 @@
                     <TextBlock Text="(Blue buttons indicated selected)" Foreground="#FF1585B5" FontStyle="Italic" FontSize="8" />
                 </StackPanel>
 
-                    <ToggleButton Command="{Binding Path=ExportCsvCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsCsvSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a CSV format." >
-                    <StackPanel Margin="5">
-                        <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
-                        <TextBlock Text="CSV" HorizontalAlignment="Center" FontSize="11" Foreground="#FFF7FF12" />
-                    </StackPanel>
-                </ToggleButton>
+                    <ToggleButton Command="{Binding Path=ExportCsvCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsCsvSelected}" Margin="5" Width="90" Height="110" ToolTip="Export the ensemble files to a CSV format.  BLUE indicates selected" >
+                        <StackPanel Margin="5">
+                            <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
+                            <TextBlock Text="CSV" HorizontalAlignment="Center" FontSize="11" Foreground="#FFF7FF12" />
+                        </StackPanel>
+                    </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsMatlabSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a Matlab format.  Each file will contain a single ensemble." >
+                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsMatlabSelected}" Margin="5" Width="90" Height="110" ToolTip="Export the ensemble files to a Matlab format.  Each file will contain a single ensemble." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="Matlab" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsMatlabMatrixSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a Matlab matrix. Each file will contain a matrix of the ensembles and a single type of value (U, Ubt, ...)" >
+                <ToggleButton Command="{Binding Path=ExportMatlabCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsMatlabMatrixSelected}" Margin="5" Width="90" Height="110" ToolTip="Export the ensemble files to a Matlab matrix. Each file will contain a matrix of the ensembles and a single type of value (U, Ubt, ...)" >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <Viewbox>
@@ -68,14 +68,16 @@
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportPd0Command}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsPd0Selected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a PD0 format." >
+                <ToggleButton Command="{Binding Path=ExportPd0Command}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsPd0Selected}" Margin="5" Width="90" Height="110" ToolTip="Export the ensemble files to a PD0 format." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="PD0" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
-                    </StackPanel>
+                                <ComboBox Margin="8,5,5,5" SelectedValue="{Binding CoordinateTransform}" ItemsSource="{Binding CoordinateTransformList}" />
+                            </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Command="{Binding Path=ExportEnsCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsEnsSelected}" Margin="5" Width="90" Height="90" ToolTip="Export the ensemble files to a ENS format." >
+
+                    <ToggleButton Command="{Binding Path=ExportEnsCommand}" Style="{StaticResource ToggleButtonGlowingBlue}" IsChecked="{Binding IsEnsSelected}" Margin="5" Width="90" Height="110" ToolTip="Export the ensemble files to a ENS format." >
                     <StackPanel Margin="5">
                         <Image Source="Images/new_project.png" Width="30" Height="30" Margin="5" />
                         <TextBlock Text="ENS" HorizontalAlignment="Center" FontSize="16" Foreground="#FFF7FF12" />
@@ -169,7 +171,7 @@
 
 
                         <!--Velocity Vector-->
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Velocity Vector" Margin="5" />
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Velocity Vector" Margin="5" ToolTip="Magnitude and Direction data." />
                         <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding IsVelocityVectorDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
                         <!--extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="2" Value="{Binding VelVectorMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="3" Value="{Binding VelVectorMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
@@ -328,8 +330,11 @@
                         <!--Mark Bad Below Bottom data-->
                         <CheckBox Content="Mark Bad Below Bottom" IsChecked="{Binding IsMarkBadBelowBottom}" Margin="5" ToolTip="Mark all velocity data below the bottom as bad velocity." />
 
-                        <!--Retransform data-->
-                        <CheckBox Content="Remove Ship Speed" IsChecked="{Binding IsRemoveShipSpeed}" Margin="5" ToolTip="Remove the ship speed from all the water velocity data." />
+                        <!--Remove Ship Speed BT-->
+                        <CheckBox Content="Remove Ship Speed [Bottom Track]" IsChecked="{Binding IsRemoveShipSpeedBT}" Margin="5" ToolTip="Remove the ship speed from all the water velocity data using Bottom Track data.  This will remove the ship speed from Earth Velocity and Velocity Vectors.  If only BT is selected, it will only use BT data.  If both GPS and BT are selected, it will use Bottom Track, and if the BT data is bad, it will use GPS as a backup." />
+
+                        <!--Remove Ship Speed GPS-->
+                            <CheckBox Content="Remove Ship Speed [GPS]" IsChecked="{Binding IsRemoveShipSpeedGPS}" Margin="5" ToolTip="Remove the ship speed from all the water velocity data using GPS Speed (VTG) data.  This will remove the ship speed from Earth Velocity and Velocity Vectors.  If only GPS is selected, it will only use GPS data.  If both GPS and BT are selected, it will use Bottom Track, and if the BT data is bad, it will use GPS as a backup." />
 
                         <!--Retransform data-->
                         <CheckBox Content="Re-Transform Data" IsChecked="{Binding IsRetransformData}" Margin="5" ToolTip="Re-transform the data.  This will recalculate Instrument, Ship and Earth data." />

@@ -1,5 +1,14 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch-Exporter-1.13.1
+ - Added Coordinate Transform to PD0 button.
+ - Allow the user to select if Bottom Track or GPS should be used to remove ship speed.
+ - Added NMEA speed to CSV data.
+
+Batch-Exporter-1.13.0
+ * CsvExporterWriter, replaced Y North with X North for Velocity Vector.
+ * Made Remove Ship Speed and Mark Bad Below Bottom Default True.
+
 Batch_Exporter-1.12.0
  * Fixed a bug in CsvExporterWriter writing the Vertical beam.
  * In Pd0ExporterWriter, removed the check for which datasets exist.
