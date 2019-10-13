@@ -84,8 +84,8 @@ Section "Core" SecCore
 	CreateDirectory "$INSTDIR\x64"
 	CreateDirectory "$INSTDIR\x86"
 	File "..\bin\Release\Pulse_Exporter.exe"
-	File "/oname=x64\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\x64\SQLite.Interop.dll"
-	File "/oname=x86\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\x86\SQLite.Interop.dll"
+	File "/oname=x64\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.111.0\build\net451\x64\SQLite.Interop.dll"
+	File "/oname=x86\SQLite.Interop.dll" "..\..\packages\System.Data.SQLite.Core.1.0.111.0\build\net451\x86\SQLite.Interop.dll"
 	
 	; Create shortcut in start menu
 	CreateDirectory "$SMPROGRAMS\Pulse Exporter"
