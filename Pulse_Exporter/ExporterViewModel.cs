@@ -36,6 +36,7 @@
  * 10/06/2017      RC          1.1.0      Added screening options.
  * 12/10/2018      RC          1.8.0      Fixed when to close files when selecting multiple files.
  * 07/31/2019      RC          1.13.1     Added option to select GPS or BT to remove the ship speed.
+ * 11/29/2019      RC          1.13.3     Added Heading, Pitch and Roll offset.
  * 
  */
 
@@ -1315,6 +1316,58 @@ namespace Pulse_Exporter
 
         #endregion
 
+        #region Offsets
+
+        /// <summary>
+        /// Heading Offset
+        /// </summary>
+        public float HeadingOffset
+        {
+            get { return _Options.HeadingOffset; }
+            set
+            {
+                _Options.HeadingOffset = value;
+                this.NotifyOfPropertyChange(() => this.HeadingOffset);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        /// <summary>
+        /// Pitch Offset
+        /// </summary>
+        public float PitchOffset
+        {
+            get { return _Options.PitchOffset; }
+            set
+            {
+                _Options.PitchOffset = value;
+                this.NotifyOfPropertyChange(() => this.PitchOffset);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        /// <summary>
+        /// Roll Offset
+        /// </summary>
+        public float RollOffset
+        {
+            get { return _Options.RollOffset; }
+            set
+            {
+                _Options.RollOffset = value;
+                this.NotifyOfPropertyChange(() => this.RollOffset);
+
+                // Save Options
+                SaveOptions();
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -1809,10 +1862,35 @@ namespace Pulse_Exporter
 
         #region Screen data
 
+        /// <summary>
+        /// Screen the data.  This will apply all the screen options selected.
+        /// </summary>
+        /// <param name="ensemble">Ensemble to screen.</param>
+        /// <param name="origDataFormat">This should always be the original format.</param>
         private void ScreenData(ref RTI.DataSet.Ensemble ensemble, RTI.AdcpCodec.CodecEnum origDataFormat)
         {
+            // Set Pitch Offset 
+            // Pitch Offset must go before Heading offset or Retransform
+            if (PitchOffset != 0.0f || RollOffset != 0.0f)
+            {
+                RTI.VesselMount.VmTiltOffset.AddAncillaryTiltOffset(ref ensemble, PitchOffset, RollOffset);
+                RTI.VesselMount.VmTiltOffset.AddBottomTrackTiltOffset(ref ensemble, PitchOffset, RollOffset);
+
+                // Retransform will be done below
+            }
+
+            // Set Heading Offset
+            if (HeadingOffset != 0.0f)
+            {
+                RTI.VesselMount.VmHeadingOffset.AddAncillaryHeadingOffset(ref ensemble, HeadingOffset);
+                RTI.VesselMount.VmHeadingOffset.AddBottomTrackHeadingOffset(ref ensemble, HeadingOffset);
+
+                // Retransform will be done below
+            }
+
             // Retransform the data
-            if (IsRetransformData)
+            // If the Heading, Pitch or Roll offset is used, then the data must be retransformed
+            if (IsRetransformData || HeadingOffset != 0.0f || PitchOffset != 0.0f || RollOffset != 0.0f)
             {
                 // PD0 has a different cooridiate matrix
                 // And the beams are in different positions

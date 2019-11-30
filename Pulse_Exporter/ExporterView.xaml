@@ -108,216 +108,260 @@
                 <extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="1" Value="{Binding MaxEnsembleNumber}" Minimum="1" Margin="5" Foreground="Black" Background="White" HorizontalAlignment="Left"/>
 
                 <ScrollViewer Grid.Row="1" Margin="5" Background="{StaticResource PulseBackBorder2Color}" >
-                    <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                
-                    <Grid Grid.Column="0" Margin="20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
-                        <!--Title-->
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Select" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--TextBlock Grid.Row="0" Grid.Column="2" Text="Min Bin" Margin="5" />
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Select Data Output" FontSize="16" Margin="10,5,5,0"></TextBlock>
+                                
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Column="0" Margin="20">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Title-->
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Select" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--TextBlock Grid.Row="0" Grid.Column="2" Text="Min Bin" Margin="5" />
                         <TextBlock Grid.Row="0" Grid.Column="3" Text="Max Bin" Margin="5" /-->
 
-                        <!--Beam Velocity-->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Beam Velocity" Margin="5" />
-                        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding IsBeamVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="2" Value="{Binding BeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Beam Velocity-->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Beam Velocity" Margin="5" />
+                                        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding IsBeamVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="2" Value="{Binding BeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="3" Value="{Binding BeamMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
-                        <!--Instrument Velocity-->
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Instrument Velocity" Margin="5" />
-                        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsInstrumentVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="2" Grid.Column="2" Value="{Binding InstrumentMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Instrument Velocity-->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Instrument Velocity" Margin="5" />
+                                        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsInstrumentVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="2" Grid.Column="2" Value="{Binding InstrumentMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="2" Grid.Column="3" Value="{Binding InstrumentMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
-                        <!--Earth Velocity-->
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Earth Velocity" Margin="5" />
-                        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsEarthVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="2" Value="{Binding EarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Earth Velocity-->
+                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Earth Velocity" Margin="5" />
+                                        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsEarthVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="2" Value="{Binding EarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="3" Value="{Binding EarthMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
-                        <!--Ship Velocity-->
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Ship Velocity" Margin="5" />
-                        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding IsShipVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="2" Value="{Binding EarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Ship Velocity-->
+                                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Ship Velocity" Margin="5" />
+                                        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding IsShipVelocityDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="2" Value="{Binding EarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="3" Value="{Binding EarthMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
 
-                        <!--Velocity Vector-->
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Velocity Vector" Margin="5" ToolTip="Magnitude and Direction data." />
-                        <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding IsVelocityVectorDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="2" Value="{Binding VelVectorMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Velocity Vector-->
+                                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Velocity Vector" Margin="5" ToolTip="Magnitude and Direction data." />
+                                        <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding IsVelocityVectorDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="2" Value="{Binding VelVectorMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="4" Grid.Column="3" Value="{Binding VelVectorMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
-                        <TextBlock Grid.Row="6" Grid.Column="0" Text="PD0 Coordinate Transform" Margin="5" />
-                        <ComboBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="8,5,5,5" SelectedValue="{Binding CoordinateTransform}" ItemsSource="{Binding CoordinateTransformList}" Foreground="Black" Background="White"/>
+                                        <TextBlock Grid.Row="6" Grid.Column="0" Text="PD0 Coordinate Transform" Margin="5" />
+                                        <ComboBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Margin="8,5,5,5" SelectedValue="{Binding CoordinateTransform}" ItemsSource="{Binding CoordinateTransformList}" Foreground="Black" Background="White"/>
 
-                        <!--Amplitude-->
-                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Amplitude" Margin="5" />
-                        <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding IsAmplitudeDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="6" Grid.Column="2" Value="{Binding AmplitudeMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Amplitude-->
+                                        <TextBlock Grid.Row="7" Grid.Column="0" Text="Amplitude" Margin="5" />
+                                        <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding IsAmplitudeDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="6" Grid.Column="2" Value="{Binding AmplitudeMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="6" Grid.Column="3" Value="{Binding AmplitudeMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
-                        <!--Correlation-->
-                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Correlation" Margin="5" />
-                        <CheckBox Grid.Row="8" Grid.Column="1" IsChecked="{Binding IsCorrelationDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="7" Grid.Column="2" Value="{Binding CorrelationMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Correlation-->
+                                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Correlation" Margin="5" />
+                                        <CheckBox Grid.Row="8" Grid.Column="1" IsChecked="{Binding IsCorrelationDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="7" Grid.Column="2" Value="{Binding CorrelationMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="7" Grid.Column="3" Value="{Binding CorrelationMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
-                        <!--Good Beam-->
-                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Good Beam" Margin="5" />
-                        <CheckBox Grid.Row="9" Grid.Column="1" IsChecked="{Binding IsGoodBeamDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="8" Grid.Column="2" Value="{Binding GoodBeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Good Beam-->
+                                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Good Beam" Margin="5" />
+                                        <CheckBox Grid.Row="9" Grid.Column="1" IsChecked="{Binding IsGoodBeamDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="8" Grid.Column="2" Value="{Binding GoodBeamMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="8" Grid.Column="3" Value="{Binding GoodBeamMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
 
-                        <!--Good Earth-->
-                        <TextBlock Grid.Row="10" Grid.Column="0" Text="Good Earth" Margin="5" />
-                        <CheckBox Grid.Row="10" Grid.Column="1" IsChecked="{Binding IsGoodEarthDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                        <!--extToolkit:IntegerUpDown Grid.Row="9" Grid.Column="2" Value="{Binding GoodEarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
+                                        <!--Good Earth-->
+                                        <TextBlock Grid.Row="10" Grid.Column="0" Text="Good Earth" Margin="5" />
+                                        <CheckBox Grid.Row="10" Grid.Column="1" IsChecked="{Binding IsGoodEarthDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                        <!--extToolkit:IntegerUpDown Grid.Row="9" Grid.Column="2" Value="{Binding GoodEarthMinBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/>
                         <extToolkit:IntegerUpDown Grid.Row="9" Grid.Column="3" Value="{Binding GoodEarthMaxBin}" Minimum="{Binding MinimumBin}" Maximum="{Binding MaximumBin}" Margin="5" Foreground="Black" Background="White"/-->
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Grid.Row="1" Margin="20" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Title-->
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Select" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Bottom Track-->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Bottom Track" Margin="5" />
+                                        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding IsBottomTrackDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Earth Water Mass-->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Earth Water Mass" Margin="5" />
+                                        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsEarthWaterMassDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Instrument Water Mass-->
+                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Instrument Water Mass" Margin="5" />
+                                        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsInstrumentWaterMassDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Ship Water Mass-->
+                                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Ship Water Mass" Margin="5" />
+                                        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding IsShipWaterMassDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Range Tracking-->
+                                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Range Tracking" Margin="5" />
+                                        <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding IsRangeTrackingDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Gage Height-->
+                                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Gage Height" Margin="5" />
+                                        <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding IsGageHeightDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--NMEA-->
+                                        <TextBlock Grid.Row="7" Grid.Column="0" Text="NMEA" Margin="5" />
+                                        <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding IsNmeaDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Profile Engineering-->
+                                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Profile Engineering" Margin="5" />
+                                        <CheckBox Grid.Row="8" Grid.Column="1" IsChecked="{Binding IsProfileEngineeringDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--Bottom Track Engineering-->
+                                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Bottom Track Engineering" Margin="5" />
+                                        <CheckBox Grid.Row="9" Grid.Column="1" IsChecked="{Binding IsBottomTrackEngineeringDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--System Setup-->
+                                        <TextBlock Grid.Row="10" Grid.Column="0" Text="System Setup" Margin="5" />
+                                        <CheckBox Grid.Row="10" Grid.Column="1" IsChecked="{Binding IsSystemSetupDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--ADCP GPS-->
+                                        <TextBlock Grid.Row="11" Grid.Column="0" Text="ADCP GPS" Margin="5" />
+                                        <CheckBox Grid.Row="11" Grid.Column="1" IsChecked="{Binding IsAdcpGpsDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                    </Grid>
+
+                                    <Grid Grid.Column="2" Margin="20">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Title-->
+                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Select" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--GPS 1-->
+                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="GPS 1" Margin="5" />
+                                        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding IsGps1DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--GPS 2-->
+                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="GPS 2" Margin="5" />
+                                        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsGps2DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--NMEA 1-->
+                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="NMEA 1" Margin="5" />
+                                        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsNmea1DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+
+                                        <!--NMEA 2-->
+                                        <TextBlock Grid.Row="4" Grid.Column="0" Text="NMEA 2" Margin="5" />
+                                        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding IsNmea2DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="Offsets" FontSize="16" Margin="10,5,5,5" />
+
+                                <Grid Grid.Row="1" Margin="10,5,5,5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                    <!--Heading Offset-->
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Heading Offset" Margin="5" />
+                                    <extToolkit:DecimalUpDown Grid.Row="0" Grid.Column="1" Margin="5" Value="{Binding HeadingOffset}" Foreground="Black" Background="White" />
+
+                                    <!--Pitch Offset-->
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Pitch Offset" Margin="5" />
+                                    <extToolkit:DecimalUpDown Grid.Row="1" Grid.Column="1" Margin="5" Value="{Binding PitchOffset}" Foreground="Black" Background="White" />
+
+                                    <!--Roll Offset-->
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Roll Offset" Margin="5" />
+                                    <extToolkit:DecimalUpDown Grid.Row="2" Grid.Column="1" Margin="5" Value="{Binding RollOffset}" Foreground="Black" Background="White" />
+
+                                </Grid>
                     </Grid>
-
-                    <Grid Grid.Column="1" Grid.Row="1" Margin="20" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--Title-->
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Select" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Bottom Track-->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Bottom Track" Margin="5" />
-                        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding IsBottomTrackDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Earth Water Mass-->
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Earth Water Mass" Margin="5" />
-                        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsEarthWaterMassDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Instrument Water Mass-->
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Instrument Water Mass" Margin="5" />
-                        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsInstrumentWaterMassDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Ship Water Mass-->
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Ship Water Mass" Margin="5" />
-                        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding IsShipWaterMassDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Range Tracking-->
-                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Range Tracking" Margin="5" />
-                        <CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding IsRangeTrackingDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Gage Height-->
-                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Gage Height" Margin="5" />
-                        <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding IsGageHeightDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--NMEA-->
-                        <TextBlock Grid.Row="7" Grid.Column="0" Text="NMEA" Margin="5" />
-                        <CheckBox Grid.Row="7" Grid.Column="1" IsChecked="{Binding IsNmeaDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Profile Engineering-->
-                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Profile Engineering" Margin="5" />
-                        <CheckBox Grid.Row="8" Grid.Column="1" IsChecked="{Binding IsProfileEngineeringDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--Bottom Track Engineering-->
-                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Bottom Track Engineering" Margin="5" />
-                        <CheckBox Grid.Row="9" Grid.Column="1" IsChecked="{Binding IsBottomTrackEngineeringDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--System Setup-->
-                        <TextBlock Grid.Row="10" Grid.Column="0" Text="System Setup" Margin="5" />
-                        <CheckBox Grid.Row="10" Grid.Column="1" IsChecked="{Binding IsSystemSetupDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--ADCP GPS-->
-                        <TextBlock Grid.Row="11" Grid.Column="0" Text="ADCP GPS" Margin="5" />
-                        <CheckBox Grid.Row="11" Grid.Column="1" IsChecked="{Binding IsAdcpGpsDataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    </Grid>
-                
-                    <Grid Grid.Column="2" Margin="20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--Title-->
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Select" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--GPS 1-->
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="GPS 1" Margin="5" />
-                        <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding IsGps1DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--GPS 2-->
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="GPS 2" Margin="5" />
-                        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding IsGps2DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--NMEA 1-->
-                        <TextBlock Grid.Row="3" Grid.Column="0" Text="NMEA 1" Margin="5" />
-                        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding IsNmea1DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-
-                        <!--NMEA 2-->
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="NMEA 2" Margin="5" />
-                        <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding IsNmea2DataSetOn}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
-                    </Grid>
-                </Grid>
-                </ScrollViewer>
+                        </StackPanel>
+                    </ScrollViewer>
 
                 <Border Grid.Row="2" Background="#FF333337" Margin="5">
                     <StackPanel Margin="20,5">

@@ -1,5 +1,8 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch-Exporter-1.13.3
+ - Added Heading, Pitch and Roll offset.
+
 Batch-Exporter-1.13.2
  * Fixed the Label for Velocity Vector direction from YNorth to XNorth.  Data is XNorth.
 
