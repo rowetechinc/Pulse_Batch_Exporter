@@ -121,7 +121,7 @@ namespace Pulse_Exporter
                     {
                         dialogResult =
                             MessageBox.Show(
-                                $@"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. This is required update. Press Ok to begin updating the application.", @"Update Available",
+                                $@"There is new version {args.CurrentVersion} available. You are using version {args.InstalledVersion}. This is required update. Press Ok to begin updating the application.  You may have to close the current version to complete the install process.", @"Update Available",
                                 MessageBoxButtons.OKCancel,
                                 MessageBoxIcon.Information);
                     }
