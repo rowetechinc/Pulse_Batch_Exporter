@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>Version 1.13.2 ChangeLog</title>
+    <title>Version 1.13.4 ChangeLog</title>
     <style type="text/css">
         .auto-style1 {
             text-decoration: underline;
@@ -10,7 +10,13 @@
 </head>
 <body>
     <p>
-        <br /><span class="auto-style1">Pulse_Exporter-1.13.2</span>
+        <br /><span class="auto-style1">Pulse_Exporter-1.13.4</span>
+        <br /> Batch-Exporter-1.13.4
+        <br /> - Normalise the heading, pitch and roll after the offset is applied.
+        <br />
+        <br /> Batch-Exporter-1.13.3
+        <br /> - Added Heading, Pitch and Roll offset.
+        <br />
         <br /> Batch-Exporter-1.13.2
         <br /> * Fixed the Label for Velocity Vector direction from YNorth to XNorth.  Data is XNorth.
         <br />
@@ -69,7 +75,31 @@
         <br />  Batch Exporter-1.0.0
         <br />  - Initial release
         <br />
-        <br /><span class="auto-style1">RTI-3.4.12</span>
+        <br /><span class="auto-style1">RTI-3.4.15</span>
+        <br />    RTI-3.4.15
+        <br />    - In ExportOptions, Added HeadingOffset, PitchOffset and RollOffset.
+        <br />    * In Tansform, If more than 3 beams are bad set all velocity to BAD_VELOCITY and not 0.0.
+        <br />    - In VmTiltOffset, Add option to retransform the data after applying the offset.
+        <br />    - In VmHeadingOffset, Add option to retransform the data after applying the offset.
+        <br />    - In VmHeadingOffset, Normalize the heading value.
+        <br />    - Added Normalise to MathHelper.
+        <br />    - In VmTiltOffset, Normalize the pitch and roll value after offset added.
+        <br />
+        <br />    RTI-3.4.14
+        <br />    - In RangeTrackingDataSet, added AverageRange().
+        <br />    - Added ScreenMarkBadAboveSurface.cs.
+        <br />    - Moved GetBottomBin() from ScreenMarkBadBelowBottom to Ensemble.
+        <br />    - In AdcpSerialPort, In Reboot, changed SLEEP to SLEEPA and wait 11 seconds.
+        <br />    * In CsvExporterWriter, Fixed the label for CSV exporter from YNorth to XNorth
+        <br />    - In EnsembleHelper, Added SetAmplitudeBad() and SetCorrelationBad().
+        <br />    - In ScreenMarkBadBelowBottom and ScreenMarkBadAboveSurface, Mark Correlation and Amplitude bad
+        <br />
+        <br />    RTI-3.4.13
+        <br />    * In CsvExporterWriter, replaced Y North with X North for Velocity Vector.
+        <br />    - In ExportOptions, made Remove Ship Speed and Mark Bad Below Bottom default to True.
+        <br />    - In RemoveShipSpeed, Added GetPreviousShipSpeedGPS to get the good GPS speed to use as a backup.
+        <br />    - In CsvExporterWriter, added Speed to NMEA CSV data.
+        <br />
         <br />    RTI-3.4.12
         <br />    * Added decoding ShipVelocity in BottomTrackDataSet::Decode().
         <br />    * Added setting the Ship Velocity in BottomTrackDataSet::DecodePd0Ensemble().

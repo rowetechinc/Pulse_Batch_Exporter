@@ -1,5 +1,8 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch-Exporter-1.13.4
+ - Normalise the heading, pitch and roll after the offset is applied.
+
 Batch-Exporter-1.13.3
  - Added Heading, Pitch and Roll offset.
 
