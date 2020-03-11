@@ -1,5 +1,10 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch-Exporter-1.14.0
+ - Added Date, Time, and Serial number as seperate columns.
+ - Added Water Track values
+ - Corrected Ship Velocity in Bottom Track
+
 Batch-Exporter-1.13.4
  - Normalise the heading, pitch and roll after the offset is applied.
 
