@@ -1,5 +1,12 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch-Exporter-1.14.2
+ - Relabed RefLayer to RefLayerMidPosition
+ - Divided by 10 the ReflayerMin,Far and Near.
+
+Batch-Exporter-1.14.1
+ - Remapped Ship Velocity PD0 to match XYZ PD0.
+
 Batch-Exporter-1.14.0
  - Added Date, Time, and Serial number as seperate columns.
  - Added Water Track values
