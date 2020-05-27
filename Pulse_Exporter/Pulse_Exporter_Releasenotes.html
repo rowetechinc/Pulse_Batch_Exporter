@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>Version 1.13.4 ChangeLog</title>
+    <title>Version 1.14.3 ChangeLog</title>
     <style type="text/css">
         .auto-style1 {
             text-decoration: underline;
@@ -10,7 +10,32 @@
 </head>
 <body>
     <p>
-        <br /><span class="auto-style1">Pulse_Exporter-1.13.4</span>
+        <br /><span class="auto-style1">Pulse_Exporter-1.14.3</span>
+        <br /> Batch-Exporter-1.14.3
+        <br /> * In Pd0Correlation, handle converting RTI to PD0 with 3 beam (SeaSEVEN).
+        <br /> * In Pd0EchoIntensity, handle converting RTI to PD0 with 3 beam (SeaSEVEN).
+        <br />
+        <br /> Batch-Exporter-1.14.2
+        <br /> - Relabed RefLayer to RefLayerMidPosition
+        <br /> - Divided by 10 the ReflayerMin,Far and Near.
+        <br />
+        <br /> Batch-Exporter-1.14.1
+        <br /> - Remapped Ship Velocity PD0 to match XYZ PD0.
+        <br />
+        <br /> Batch-Exporter-1.14.0
+        <br /> - Added Date, Time, and Serial number as seperate columns.
+        <br /> - Added Water Track values
+        <br /> - Corrected Ship Velocity in Bottom Track
+        <br />
+        <br /> Batch-Exporter-1.13.4
+        <br /> - Normalise the heading, pitch and roll after the offset is applied.
+        <br />
+        <br /> Batch-Exporter-1.13.3
+        <br /> - Added Heading, Pitch and Roll offset.
+        <br />
+        <br /> Batch-Exporter-1.13.2
+        <br /> * Fixed the Label for Velocity Vector direction from YNorth to XNorth.  Data is XNorth.
+        <br />
         <br /> Batch-Exporter-1.13.4
         <br /> - Normalise the heading, pitch and roll after the offset is applied.
         <br />
@@ -75,7 +100,31 @@
         <br />  Batch Exporter-1.0.0
         <br />  - Initial release
         <br />
-        <br /><span class="auto-style1">RTI-3.4.15</span>
+        <br /><span class="auto-style1">RTI-3.4.18</span>
+        <br />  RTI-3.4.18
+        <br />  * Only apply VM Heading or Tilt offset if value is given.
+        <br />  * In Transform, check if the ADCP has more than 3 beams (SeaSEVEN).
+        <br />  * In Pd0Correlation, handle converting RTI to PD0 with 3 beam (SeaSEVEN).
+        <br />  * In Pd0EchoIntensity, handle converting RTI to PD0 with 3 beam (SeaSEVEN).
+        <br />
+        <br />  RTI-3.4.17
+        <br />  - In Project and AdcpDatabaseWriter, added BurstID to project table.
+        <br />  - In EnsembleDataSet, added BurstID and BurstIndex.
+        <br />  - In AdcpDatabaseWriter, added BurstIndex and BurstID.
+        <br />  - In AdcpBinaryCodecReadFile, Added events to monitor the process.
+        <br />  - In RtiWavesEncoder, Handling new firmware version with BurstID and BurstIndex.
+        <br />  * Fixed bug in AdcpUdp when UDP is not initialized.
+        <br />
+        <br />  RTI-3.4.16
+        <br />  - Adding Ethernet Upload.
+        <br />  - In BaseDataSet, added JSON WaterMass WT PD0 Values.
+        <br />  - In ShipWaterMassDataSet, InstrumentWaterMassDataSet and EarthWaterMassDataSet, added PD0 Missing Values and DecodePd0Ensemble().
+        <br />  - In PD0 class, fixed how Water Mass values are set.
+        <br />  - In Ensemble class, use DecodePd0Ensemble() to decode the Water Mass values.
+        <br />  - In CsvExporterWriter, added Water Track (Water Mass) values.
+        <br />  - In ShipVelocityDataSet, remapped beams for PD0 decode to match X,Y,Z.
+        <br />  - In CsvExporterWriter, Relabed RefLayer to RefLayerMidPosition.  Divided by 10 the ReflayerMin,Far and Near.
+        <br />
         <br />    RTI-3.4.15
         <br />    - In ExportOptions, Added HeadingOffset, PitchOffset and RollOffset.
         <br />    * In Tansform, If more than 3 beams are bad set all velocity to BAD_VELOCITY and not 0.0.

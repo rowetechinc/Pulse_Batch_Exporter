@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <item>
-    <version>1.13.4.0</version>
-    <url>http://www.rowetechinc.com/swfw/latest/Exporter/Pulse_Exporter.Installer.v.1.13.4.Full.exe</url>
+    <version>1.14.3.0</version>
+    <url>http://www.rowetechinc.com/swfw/latest/Exporter/Pulse_Exporter.Installer.v.1.14.3.Full.exe</url>
     <changelog>http://www.rowetechinc.com/swfw/latest/Exporter/Pulse_Exporter_Releasesnotes.html</changelog>
     <mandatory>true</mandatory>
 </item>
