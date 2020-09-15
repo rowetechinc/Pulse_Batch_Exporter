@@ -1713,7 +1713,7 @@ namespace Pulse_Exporter
                     string filenameWithConfig = filename + string.Format("_{0}_{1}", ens.EnsembleData.SubsystemConfig.CommandSetupToString(), ens.EnsembleData.SubsystemConfig.SubSystem.DescString());
 
                     // Set the output path
-                    OutputFilePath = folderPath + @"\" + filenameWithConfig;
+                    OutputFilePath = Path.GetFullPath(folderPath);
 
                     // Create a writer for the subsystem configuration
                     ExportWriter ew = new ExportWriter();
