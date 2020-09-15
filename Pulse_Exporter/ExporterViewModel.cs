@@ -1368,6 +1368,95 @@ namespace Pulse_Exporter
 
         #endregion
 
+        #region Good Bad Ens Count
+
+        /// <summary>
+        /// Number of good ensembles.
+        /// </summary>
+        private int _GoodEnsCount;
+        /// <summary>
+        /// Number of good ensembles.
+        /// </summary>
+        public int GoodEnsCount
+        {
+            get { return _GoodEnsCount; }
+            set
+            {
+                _GoodEnsCount = value;
+                this.NotifyOfPropertyChange(() => this.GoodEnsCount);
+            }
+        }
+
+        /// <summary>
+        /// Number of Bad Ensembles.
+        /// </summary>
+        private int _BadEnsCount;
+        /// <summary>
+        /// Number of Bad Ensembles.
+        /// </summary>
+        public int BadEnsCount
+        {
+            get { return _BadEnsCount; }
+            set
+            {
+                _BadEnsCount = value;
+                this.NotifyOfPropertyChange(() => this.BadEnsCount);
+            }
+        }
+
+        /// <summary>
+        /// Total number of Ensembles.
+        /// </summary>
+        private int _TotalEnsembles;
+        /// <summary>
+        /// Total Number of Ensembles.
+        /// </summary>
+        public int TotalEnsembles
+        {
+            get { return _TotalEnsembles; }
+            set
+            {
+                _TotalEnsembles = value;
+                this.NotifyOfPropertyChange(() => this.TotalEnsembles);
+            }
+        }
+
+        /// <summary>
+        /// Tooltip to describe the results.
+        /// </summary>
+        private string _GoodBadEnsTooltip;
+        /// <summary>
+        /// Tooltip to describe the results.
+        /// </summary>
+        public string GoodBadEnsTooltip
+        {
+            get { return _GoodBadEnsTooltip; }
+            set
+            {
+                _GoodBadEnsTooltip = value;
+                this.NotifyOfPropertyChange(() => this.GoodBadEnsTooltip);
+            }
+        }
+
+        /// <summary>
+        /// Folder path of output.
+        /// </summary>
+        private string _OutputFilePath;
+        /// <summary>
+        /// Folder path of output.
+        /// </summary>
+        public string OutputFilePath
+        {
+            get { return _OutputFilePath; }
+            set
+            {
+                _OutputFilePath = value;
+                this.NotifyOfPropertyChange(() => this.OutputFilePath);
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
@@ -1413,6 +1502,10 @@ namespace Pulse_Exporter
             IsEnsSelected = true;
             IsMatlabMatrixSelected = true;
 
+            GoodEnsCount = 0;
+            BadEnsCount = 0;
+            TotalEnsembles = 0;
+
             // Dialog to import RTB data
             SelectFolderCommand = ReactiveCommand.Create();
             SelectFolderCommand.Subscribe(_ => SelectFolder());
@@ -1438,6 +1531,11 @@ namespace Pulse_Exporter
 
             if(results == DialogResult.OK)
             {
+                // Clear counts
+                GoodEnsCount = 0;
+                BadEnsCount = 0;
+                TotalEnsembles = 0;
+
                 ResultsFilePath = dialog.SelectedPath;
             }
         }
@@ -1459,6 +1557,11 @@ namespace Pulse_Exporter
 
                 if (result == DialogResult.OK)
                 {
+                    // Clear previous results
+                    GoodEnsCount = 0;
+                    BadEnsCount = 0;
+                    TotalEnsembles = 0;
+
                     // Get the files selected
                     string[] files = dialog.FileNames;
 
@@ -1509,6 +1612,8 @@ namespace Pulse_Exporter
 
                 // Get all the ensembles from the file
                 FilePlayback fp = new FilePlayback();
+                fp.GoodEnsembleEvent += Fp_GoodEnsembleEvent;
+                fp.BadEnsembleEvent += Fp_BadEnsembleEvent;
                 fp.FindRtbEnsembles(file);
                 List<RTI.FilePlayback.EnsembleData> ensembles = fp.GetEnsembleDataList();
                 fp.Dispose();
@@ -1544,6 +1649,26 @@ namespace Pulse_Exporter
             }
 
             IsExporting = false;
+        }
+
+        /// <summary>
+        /// Keep track of bad ensembles found.
+        /// </summary>
+        private void Fp_BadEnsembleEvent()
+        {
+            GoodEnsCount += 1;
+            TotalEnsembles += 1;
+            GoodBadEnsTooltip = "Good Ensembles: [" + GoodEnsCount + "] Bad Ensembles: [" + BadEnsCount  + "] Total Ensembles: [" + TotalEnsembles + "]";
+        }
+
+        /// <summary>
+        /// Keep track of Good ensembles found.
+        /// </summary>
+        private void Fp_GoodEnsembleEvent()
+        {
+            BadEnsCount += 1;
+            TotalEnsembles += 1;
+            GoodBadEnsTooltip = "Good Ensembles: [" + GoodEnsCount + "] Bad Ensembles: [" + BadEnsCount + "] Total Ensembles: [" + TotalEnsembles + "]";
         }
 
         #region Write Ensembles
@@ -1586,6 +1711,9 @@ namespace Pulse_Exporter
                 {
                     // Add to the file name the cepo index and subsystem code
                     string filenameWithConfig = filename + string.Format("_{0}_{1}", ens.EnsembleData.SubsystemConfig.CommandSetupToString(), ens.EnsembleData.SubsystemConfig.SubSystem.DescString());
+
+                    // Set the output path
+                    OutputFilePath = folderPath + @"\" + filenameWithConfig;
 
                     // Create a writer for the subsystem configuration
                     ExportWriter ew = new ExportWriter();

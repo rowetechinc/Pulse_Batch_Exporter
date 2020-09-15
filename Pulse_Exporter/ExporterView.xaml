@@ -6,7 +6,7 @@
              xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:extToolkit="http://schemas.xceed.com/wpf/xaml/toolkit" 
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="700">
+             d:DesignHeight="1200" d:DesignWidth="700">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Left">
     <Grid >
         <Grid.RowDefinitions>
@@ -90,8 +90,8 @@
         <Expander Grid.Row="1" Margin="15">
                 <Expander.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="3:" FontWeight="Bold" FontSize="20" Margin="10,5" />
-                        <TextBlock Text="Advanced Options" Foreground="White" FontWeight="Bold" FontSize="18" Margin="5" VerticalAlignment="Center" />
+                        <TextBlock Text="3:" FontWeight="Bold" FontSize="12" Margin="10,5" />
+                        <TextBlock Text="Advanced Options" Foreground="White" FontWeight="Bold" FontSize="12" Margin="5" VerticalAlignment="Center" />
                     </StackPanel>
                 </Expander.Header>
             <StackPanel>
@@ -389,19 +389,48 @@
             </StackPanel>
         </Expander>
 
-        <Button Grid.Row="2" Margin="15" Command="{Binding Path=ImportRtbDataCommand}" Background="{StaticResource ClockBackgroundColor}" Foreground="{StaticResource ClockFontColor}" FontSize="26.667" >
+        <Button Grid.Row="2" Margin="15" Command="{Binding Path=ImportRtbDataCommand}" Background="{StaticResource PulseStatusSolidColorGood}" FontSize="26.667" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="4:" FontWeight="Bold" FontSize="20" Margin="10,5" Foreground="Green" />
-                <TextBlock Text="Select Files to Export" Foreground="White" FontWeight="Bold" FontSize="18" Margin="5" VerticalAlignment="Center" />
+                <TextBlock Text="Select Files to Export" Foreground="DarkSlateGray" FontWeight="Bold" FontSize="18" Margin="5" VerticalAlignment="Center" />
             </StackPanel>
         </Button>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
-            <TextBlock Text="Version: " />
-            <TextBlock Text="{Binding Version}" />
-        </StackPanel>
+        <Border Grid.Row="3" Margin="15" Background="{StaticResource PulseBackBorder3Color}" CornerRadius="3">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="0.1*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,2" Text="Results" FontWeight="Bold" Foreground="{StaticResource PulseFontBrightColor}" HorizontalAlignment="Center" />
 
-        <!--Progress Ring-->
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="5,2" Text="Good: " />
+                <ProgressBar Grid.Row="1" Grid.Column="1" Minimum="0" Maximum="{Binding TotalEnsembles}" Value="{Binding GoodEnsCount}" ToolTip="{Binding GoodBadEnsTooltip}" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding GoodEnsCount}" Margin="5,2" />
+  
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="5,2" Text="Bad: " />
+                <ProgressBar Grid.Row="2" Grid.Column="1" Minimum="0" Maximum="{Binding TotalEnsembles}" Value="{Binding BadEnsCount}" ToolTip="Bad ensembles failed checksum check.  This usually means there were incorrect or missing bytes in the ensemble." />
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding BadEnsCount}" Margin="5,2" />
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,2" Text="{Binding GoodBadEnsTooltip}" />
+                <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0" MaxWidth="580" HorizontalAlignment="Left"  Text="{Binding OutputFilePath, Mode=OneWay}" IsReadOnly="True" BorderThickness="0" Background="Transparent" TextWrapping="Wrap" />
+            </Grid>
+        </Border>
+
+            <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+                <TextBlock Text="Version: " />
+                <TextBlock Text="{Binding Version}" />
+            </StackPanel>
+
+            <!--Progress Ring-->
         <Viewbox Grid.Row="1" Height="100" Width="100" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" >
             <mahapps:ProgressRing IsActive="{Binding IsExporting}" Foreground="Red" Height="200" Width="200" />
         </Viewbox>

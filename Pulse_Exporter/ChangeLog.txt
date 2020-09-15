@@ -1,5 +1,11 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch-Exporter-1.15.0
+ - Added display for good and bad ensemble count.
+
+Batch-Exporter-1.14.4
+  * Fixed a bug with number of elements in Bottom Track dataset.
+
 Batch-Exporter-1.14.3
   * In Pd0Correlation, handle converting RTI to PD0 with 3 beam (SeaSEVEN).
   * In Pd0EchoIntensity, handle converting RTI to PD0 with 3 beam (SeaSEVEN).
