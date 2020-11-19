@@ -1,5 +1,8 @@
 ﻿Pulse Batch Exporter Changelog
 
+Batch-Exporter-1.16.0
+ - Swapped XNorth for YNorth for Velocity Vectors.
+
 Batch-Exporter-1.15.0
  - Added display for good and bad ensemble count.
 
